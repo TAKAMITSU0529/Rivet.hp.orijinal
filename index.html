@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rivet | AI Business Transformation</title>
+    <meta name="description" content="最先端のAIと独自のクリエイティブで心揺さぶる未来を。RivetはAI導入支援、Web制作、システム開発を行うデジタルクリエイティブカンパニーです。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+
+<body class="loading">
+    <!-- Background Canvas -->
+    <canvas id="hero-canvas"></canvas>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Loading Screen -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-text">Rivet</div>
+            <div class="loader-bar-bg">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="header">
+        <div class="logo">
+            <img src="images/logo.png" alt="Rivet">
+        </div>
+        <nav class="desktop-nav">
+            <a href="#service" class="nav-link"><span>Service</span></a>
+            <a href="#work" class="nav-link"><span>Work</span></a>
+            <a href="#blog" class="nav-link"><span>Blog</span></a>
+            <a href="#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="#about" class="nav-link"><span>About</span></a>
+            <a href="#contact" class="nav-link"><span>Contact</span></a>
+        </nav>
+        <div class="menu-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <p class="hero-label">AI Business Transformation</p>
+                <h1 class="hero-title">
+                    <div class="line">
+                        <span class="word glitch-text" data-text="Beyond">Beyond</span>
+                    </div>
+                    <div class="line">
+                        <span class="word highlight glitch-text" data-text="Creative">Creative</span>
+                    </div>
+                </h1>
+                <p class="hero-subtitle">最先端のAIと独自のクリエイティブで<br>心揺さぶる未来を実装する</p>
+
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary magnetic">
+                        <span class="btn-text">Start Project</span>
+                        <div class="btn-fill"></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <span class="scroll-text">Scroll</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- Intro Section -->
+        <section class="intro">
+            <div class="container">
+                <div class="intro-text-wrapper">
+                    <p class="intro-text split-text">
+                        AI × Creative.<br>
+                        それは、ビジネスを加速させる<br>
+                        最強のエンジン。
+                    </p>
+                    <p class="intro-sub split-text">
+                        アナログな作業を効率化し、<br>
+                        人が本来注力すべき「創造」の時間を生み出す。<br>
+                        Rivetは、テクノロジーとデザインの力で<br>
+                        あなたのビジネスに革命を起こします。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Section -->
+        <section class="service" id="service">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Our Services</span>
+                    <h2 class="section-title">Solutions</h2>
+                </div>
+
+                <!-- AI Solutions Group -->
+                <div class="service-group">
+                    <h3 class="service-category-title">
+                        <span class="en">AI Solutions</span>
+                        <span class="ja">AI事業</span>
+                    </h3>
+                    <div class="service-grid">
+                        <!-- Service Item 1 -->
+                        <div class="service-card" data-cursor="View">
+                            <div class="card-content">
+                                <div class="card-number">01</div>
+                                <h3>法人向け生成AI研修</h3>
+                                <p>ChatGPT等のAIツール活用法を基礎から応用まで。即実践可能なカリキュラムで組織のAIリテラシーを向上させます。</p>
+                                <div class="card-tags">
+                                    <span>Training</span>
+                                    <span>Reskilling</span>
+                                </div>
+                            </div>
+                            <div class="card-bg"></div>
+                        </div>
+
+                        <!-- Service Item 2 -->
+                        <div class="service-card" data-cursor="View">
+                            <div class="card-content">
+                                <div class="card-number">02</div>
+                                <h3>AI導入支援</h3>
+                                <p>課題抽出から導入、定着まで。お客様のビジネスモデルに合わせたオーダーメイドのAIソリューションを提供します。</p>
+                                <div class="card-tags">
+                                    <span>Consulting</span>
+                                    <span>Integration</span>
+                                </div>
+                            </div>
+                            <div class="card-bg"></div>
+                        </div>
+
+                        <!-- Service Item 3 -->
+                        <div class="service-card" data-cursor="View">
+                            <div class="card-content">
+                                <div class="card-number">03</div>
+                                <h3>生成AI受託開発</h3>
+                                <p>LLMを用いたチャットボットや業務効率化ツールなど、ニーズに合わせたAIシステムを開発・実装します。</p>
+                                <div class="card-tags">
+                                    <span>Development</span>
+                                    <span>LLM</span>
+                                </div>
+                            </div>
+                            <div class="card-bg"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative & Marketing Group -->
+                <div class="service-group">
+                    <h3 class="service-category-title creative-title">
+                        <span class="en">Creative & Marketing</span>
+                        <span class="ja">クリエイティブ事業</span>
+                    </h3>
+                    <div class="service-grid">
+                        <!-- Service Item 4 -->
+                        <div class="service-card creative" data-cursor="View">
+                            <div class="card-content">
+                                <div class="card-number">04</div>
+                                <h3>Webサイト制作</h3>
+                                <p>最新トレンドとSEOを考慮した、機能的かつ美しいWebサイト。ブランド価値を最大化するデジタル体験を構築します。</p>
+                                <div class="card-tags">
+                                    <span>Web Design</span>
+                                    <span>UI/UX</span>
+                                </div>
+                            </div>
+                            <div class="card-bg"></div>
+                        </div>
+
+                        <!-- Service Item 5 -->
+                        <div class="service-card creative" data-cursor="View">
+                            <div class="card-content">
+                                <div class="card-number">05</div>
+                                <h3>クリエイティブ制作</h3>
+                                <p>動画、グラフィック、ブランディング。AIを活用した効率的かつ高品質なクリエイティブで、人の心を動かします。</p>
+                                <div class="card-tags">
+                                    <span>Video</span>
+                                    <span>Design</span>
+                                </div>
+                            </div>
+                            <div class="card-bg"></div>
+                        </div>
+
+                        <!-- Service Item 6 -->
+                        <div class="service-card creative" data-cursor="View">
+                            <div class="card-content">
+                                <div class="card-number">06</div>
+                                <h3>デジタルマーケティング</h3>
+                                <p>広告運用、MEO、SNS戦略。データに基づいたアプローチで、認知拡大と集客を確実にサポートします。</p>
+                                <div class="card-tags">
+                                    <span>Marketing</span>
+                                    <span>Ads</span>
+                                </div>
+                            </div>
+                            <div class="card-bg"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Section -->
+        <section class="work" id="work">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Selected Works</span>
+                    <h2 class="section-title">Case Study</h2>
+                </div>
+
+                <div class="work-grid">
+                    <!-- Work Item 1 (AI) -->
+                    <div class="work-card" data-cursor="View">
+                        <div class="work-image">
+                            <div class="work-img-placeholder"
+                                style="background: linear-gradient(45deg, #0f172a, #1e293b);"></div>
+                            <div class="work-overlay"></div>
+                        </div>
+                        <div class="work-content">
+                            <div class="work-meta">
+                                <span class="work-cat">AI Solution</span>
+                                <span class="work-date">2024.12</span>
+                            </div>
+                            <h3 class="work-title">大手製造業向け<br>生成AI導入プロジェクト</h3>
+                            <p class="work-desc">社内ナレッジベースを活用したRAG構築により、問い合わせ対応工数を60%削減。セキュアな環境でのLLM活用を実現。</p>
+                            <div class="work-tags">
+                                <span>RAG</span>
+                                <span>Azure OpenAI</span>
+                                <span>Internal Tool</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Work Item 2 (Web) -->
+                    <div class="work-card" data-cursor="View">
+                        <div class="work-image">
+                            <div class="work-img-placeholder"
+                                style="background: linear-gradient(45deg, #f0f9ff, #e0f2fe);"></div>
+                            <div class="work-overlay"></div>
+                        </div>
+                        <div class="work-content">
+                            <div class="work-meta">
+                                <span class="work-cat">Web Design</span>
+                                <span class="work-date">2024.11</span>
+                            </div>
+                            <h3 class="work-title">Tech Startup<br>コーポレートサイトリニューアル</h3>
+                            <p class="work-desc">先進性と信頼性を表現するモダンなデザイン。WebGLを用いたインタラクティブな演出でブランド体験を向上。</p>
+                            <div class="work-tags">
+                                <span>Web Design</span>
+                                <span>WebGL</span>
+                                <span>Next.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Work Item 3 (AI) -->
+                    <div class="work-card" data-cursor="View">
+                        <div class="work-image">
+                            <div class="work-img-placeholder"
+                                style="background: linear-gradient(45deg, #fff7ed, #ffedd5);"></div>
+                            <div class="work-overlay"></div>
+                        </div>
+                        <div class="work-content">
+                            <div class="work-meta">
+                                <span class="work-cat">AI Training</span>
+                                <span class="work-date">2024.10</span>
+                            </div>
+                            <h3 class="work-title">全社的AIリテラシー向上<br>研修プログラム</h3>
+                            <p class="work-desc">非エンジニア職を含む全社員向けの生成AI活用研修。業務効率化のアイデア創出ワークショップも実施。</p>
+                            <div class="work-tags">
+                                <span>Training</span>
+                                <span>Prompt Eng.</span>
+                                <span>Workshop</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="blog" id="blog">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Latest Insights</span>
+                    <h2 class="section-title">Media & Blog</h2>
+                </div>
+            </div>
+
+            <div class="blog-scroller" data-cursor="Drag">
+                <div class="blog-track">
+                    <!-- Blog Item 1 -->
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <div class="blog-img-placeholder"
+                                style="background: linear-gradient(135deg, #a8c0ff, #3f2b96);"></div>
+                            <div class="blog-overlay"></div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">2025.05.16</span>
+                                <span class="blog-tag">AI活用</span>
+                            </div>
+                            <h3 class="blog-title">AI×カレンダー連携で予定調整を自動化 | AI活用30日間トライアル Day10</h3>
+                            <p class="blog-excerpt">なぜ予定調整にAIが有効なのか？予定調整という業務は、一見するとシンプルに見えて、実は多くの煩雑作業をしています...</p>
+                            <a href="#" class="blog-link">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Item 2 -->
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <div class="blog-img-placeholder"
+                                style="background: linear-gradient(135deg, #fbc2eb, #a6c1ee);"></div>
+                            <div class="blog-overlay"></div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">2025.05.14</span>
+                                <span class="blog-tag">Notion AI</span>
+                            </div>
+                            <h3 class="blog-title">Notion AIで社内ナレッジを一元管理 | AI活用30日間トライアル Day09</h3>
+                            <p class="blog-excerpt">散らばった社内情報をAIが整理・要約。検索時間の短縮と情報の属人化解消を実現する具体的な手法を紹介します。</p>
+                            <a href="#" class="blog-link">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Item 3 -->
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <div class="blog-img-placeholder"
+                                style="background: linear-gradient(135deg, #84fab0, #8fd3f4);"></div>
+                            <div class="blog-overlay"></div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">2025.05.04</span>
+                                <span class="blog-tag">議事録AI</span>
+                            </div>
+                            <h3 class="blog-title">議事録作成も時間を半分にした！AI活用30日間トライアル Day06</h3>
+                            <p class="blog-excerpt">会議の録音から要約、タスク抽出までを自動化。精度を高めるためのプロンプトエンジニアリングのコツとは？</p>
+                            <a href="#" class="blog-link">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Item 4 -->
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <div class="blog-img-placeholder"
+                                style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);"></div>
+                            <div class="blog-overlay"></div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">2025.04.28</span>
+                                <span class="blog-tag">Web Design</span>
+                            </div>
+                            <h3 class="blog-title">AI時代のWebデザイン：動的なユーザー体験の作り方</h3>
+                            <p class="blog-excerpt">静的なページから、ユーザーの行動に合わせて変化する動的なインターフェースへ。AIがもたらす新しいWebの形。</p>
+                            <a href="#" class="blog-link">Read More →</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Item 5 -->
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <div class="blog-img-placeholder"
+                                style="background: linear-gradient(135deg, #ff9a9e, #fecfef);"></div>
+                            <div class="blog-overlay"></div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-date">2025.04.20</span>
+                                <span class="blog-tag">Trend</span>
+                            </div>
+                            <h3 class="blog-title">2025年のAIトレンド予測：エージェント型AIの台頭</h3>
+                            <p class="blog-excerpt">単なるチャットボットから、自律的にタスクを遂行するエージェントへ。ビジネスプロセスはどう変わるのか。</p>
+                            <a href="#" class="blog-link">Read More →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-wrapper">
+                    <div class="about-visual">
+                        <div class="visual-box">
+                            <div class="glowing-orb"></div>
+                            <div class="glass-panel"></div>
+                        </div>
+                    </div>
+                    <div class="about-content">
+                        <span class="section-label">About Us</span>
+                        <h2 class="about-title">Create Time,<br>Create Future.</h2>
+                        <div class="about-desc">
+                            <p>AIの進化は、ビジネスのあり方を根本から変えようとしています。<br>
+                                しかし、テクノロジーはあくまで「手段」です。</p>
+                            <p>私たちが目指すのは、AIに任せられる作業はAIに任せ、<br>
+                                人間が本来持つ「創造性」や「感性」を最大限に発揮できる時間を創り出すこと。</p>
+                            <p>Rivetは、テクノロジーと人の共存による<br>
+                                新しい未来のスタンダードを構築します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recruit Section -->
+        <section class="recruit" id="recruit">
+            <div class="recruit-bg">
+                <div class="recruit-orb orb-1"></div>
+                <div class="recruit-orb orb-2"></div>
+                <div class="recruit-orb orb-3"></div>
+            </div>
+            <div class="container">
+                <div class="recruit-content">
+                    <h2 class="recruit-title">RECRUIT</h2>
+                    <p class="recruit-sub">採用情報</p>
+                    <a href="#" class="btn btn-white magnetic">
+                        <span class="btn-text">採用情報をみる</span>
+                        <div class="btn-fill"></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="contact-bg-anim"></div>
+            <div class="container">
+                <div class="contact-inner">
+                    <h2 class="contact-title">
+                        Ready to<br>Transform?
+                    </h2>
+                    <p class="contact-sub">
+                        サービスの内容・料金・ご予算など、<br>
+                        まずはお気軽にご相談ください。
+                    </p>
+                    <div class="contact-actions">
+                        <a href="#" class="btn btn-large magnetic">
+                            <span class="btn-text">お問い合わせ</span>
+                            <div class="btn-icon">→</div>
+                            <div class="btn-fill"></div>
+                        </a>
+                        <a href="#" class="btn btn-outline magnetic">
+                            <span class="btn-text">資料ダウンロード</span>
+                            <div class="btn-fill"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Rivet">
+                    </div>
+                    <p>AI Business Transformation Company</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="#service">Service</a>
+                    <a href="#work">Work</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#recruit">Recruit</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rivet. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

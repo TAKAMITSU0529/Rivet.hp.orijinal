@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Rivet - Beyond Creative</title>
+    <meta name="description" content="株式会社Rivetについて。最先端のAIテクノロジーとクリエイティブで、ビジネスの新しい価値を創造します。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="about-page.css">
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+
+<body class="about-body">
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navigation -->
+    <header class="header">
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt="Rivet"></a>
+        </div>
+        <nav class="desktop-nav">
+            <a href="index.html#service" class="nav-link"><span>Service</span></a>
+            <a href="index.html#work" class="nav-link"><span>Work</span></a>
+            <a href="index.html#blog" class="nav-link"><span>Blog</span></a>
+            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="about.html" class="nav-link active"><span>About</span></a>
+            <a href="index.html#contact" class="nav-link"><span>Contact</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> / <span>About Us</span>
+                </div>
+                <div class="hero-content">
+                    <h1 class="page-title">
+                        <span class="block-reveal">About</span><br>
+                        <span class="block-reveal highlight">Rivet</span>
+                    </h1>
+                    <p class="hero-description">
+                        テクノロジーとデザインで<br>
+                        心揺さぶる未来を実装する
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section class="philosophy">
+            <div class="container">
+                <div class="philosophy-wrapper">
+                    <div class="philosophy-header">
+                        <span class="section-label">Philosophy</span>
+                        <h2 class="philosophy-title">
+                            最先端のAIと<br>
+                            独自のクリエイティブで<br>
+                            新しい価値を。
+                        </h2>
+                    </div>
+                    <div class="philosophy-body">
+                        <p>
+                            AIの進化は、ビジネスのあり方を根本から変えようとしています。<br>
+                            しかし、テクノロジーはあくまで「手段」です。<br>
+                            私たちが目指すのは、AIに任せられる作業はAIに任せ、<br>
+                            人間が本来持つ「創造性」や「感性」を最大限に発揮できる時間を創り出すこと。
+                        </p>
+                        <p>
+                            Rivetは、テクノロジーと人の共存による<br>
+                            新しい未来のスタンダードを構築します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission / Vision / Value -->
+        <section class="mvv-section">
+            <div class="container">
+                <div class="mvv-grid">
+                    <div class="mvv-card">
+                        <div class="mvv-label">Mission</div>
+                        <h3>課題解決と価値創造</h3>
+                        <p>AIとクリエイティブの力で、企業の課題を解決し、新しい価値を創造する。業務効率化だけでなく、人が本来注力すべき創造的な仕事に時間を使えるよう支援します。</p>
+                    </div>
+                    <div class="mvv-card">
+                        <div class="mvv-label">Vision</div>
+                        <h3>共存する未来</h3>
+                        <p>テクノロジーと人が共存する、新しいビジネスのスタンダードを創る。AIを恐れるのではなく、AIと共に成長し、より人間らしい働き方を実現する未来を描きます。</p>
+                    </div>
+                    <div class="mvv-card">
+                        <div class="mvv-label">Value</div>
+                        <h3>成果と信頼</h3>
+                        <p>成果へのコミット、誠実なコミュニケーション、継続的な学習と進化。お客様と共に成長し、長期的なパートナーシップを築くことを大切にしています。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Profile -->
+        <section class="company-profile">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Company</span>
+                    <h2 class="section-title">会社概要</h2>
+                </div>
+                <div class="profile-list">
+                    <div class="profile-item">
+                        <div class="profile-term">会社名</div>
+                        <div class="profile-desc">株式会社Rivet</div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="profile-term">事業内容</div>
+                        <div class="profile-desc">
+                            <ul class="service-list">
+                                <li>AI Consulting事業（ChatGPT・AI研修・導入支援）</li>
+                                <li>Web Create事業（Web制作・デザイン・動画）</li>
+                                <li>Marketing・Advertising事業（MEO・LINE構築・広告運用）</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="profile-item">
+                        <div class="profile-term">Webサイト</div>
+                        <div class="profile-desc">
+                            <a href="https://rivet-link.com" target="_blank"
+                                class="text-link">https://rivet-link.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="about-cta">
+            <div class="container">
+                <div class="cta-inner">
+                    <h2 class="cta-title">Start Your Project</h2>
+                    <p class="cta-text">
+                        Rivetと共に、ビジネスの新しい可能性を切り拓きませんか？<br>
+                        まずはお気軽にご相談ください。
+                    </p>
+                    <a href="index.html#contact" class="btn btn-large magnetic">
+                        <span class="btn-text">お問い合わせ</span>
+                        <div class="btn-icon">→</div>
+                        <div class="btn-fill"></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Rivet">
+                    </div>
+                    <p>AI Business Transformation Company</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="index.html#service">Service</a>
+                    <a href="index.html#work">Work</a>
+                    <a href="index.html#blog">Blog</a>
+                    <a href="index.html#recruit">Recruit</a>
+                    <a href="about.html">About</a>
+                    <a href="index.html#contact">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rivet. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="about-page.js"></script>
+</body>
+
+</html>

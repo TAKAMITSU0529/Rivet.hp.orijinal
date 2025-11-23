@@ -1,0 +1,332 @@
+/* About Page Specific Styles */
+
+/* Ambient Background */
+.about-body {
+    background-color: #f8fcfb;
+    /* Very light mint/white */
+    position: relative;
+    overflow-x: hidden;
+}
+
+.ambient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+}
+
+.orb-1 {
+    width: 60vw;
+    height: 60vw;
+    top: -20%;
+    left: -10%;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.15), transparent 70%);
+    /* Emerald */
+    animation: float 20s infinite ease-in-out;
+}
+
+.orb-2 {
+    width: 50vw;
+    height: 50vw;
+    top: 10%;
+    right: -10%;
+    background: radial-gradient(circle, rgba(250, 204, 21, 0.15), transparent 70%);
+    /* Yellow/Gold */
+    animation: float 25s infinite ease-in-out reverse;
+}
+
+.orb-3 {
+    width: 40vw;
+    height: 40vw;
+    bottom: -10%;
+    left: 20%;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.1), transparent 70%);
+    /* Light Green */
+    animation: float 22s infinite ease-in-out 5s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    33% {
+        transform: translate(30px, -50px);
+    }
+
+    66% {
+        transform: translate(-20px, 20px);
+    }
+}
+
+/* About Hero */
+.about-hero {
+    padding: 18rem 0 10rem;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb {
+    position: absolute;
+    top: 12rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 2rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.breadcrumb a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.breadcrumb a:hover {
+    opacity: 0.7;
+}
+
+.hero-content {
+    width: 100%;
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 12vw, 10rem);
+    line-height: 0.9;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+    letter-spacing: -0.03em;
+}
+
+.page-title .highlight {
+    color: #047857;
+    /* Deep Emerald */
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin-top: 2rem;
+}
+
+/* Philosophy Section */
+.philosophy {
+    padding: 10rem 0;
+}
+
+.philosophy-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.section-label {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.philosophy-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.2;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.philosophy-body p {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+/* MVV Section */
+.mvv-section {
+    padding: 5rem 0 15rem;
+}
+
+.mvv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 4rem;
+}
+
+.mvv-card {
+    padding: 2rem;
+    transition: transform 0.3s var(--easing);
+}
+
+.mvv-card:hover {
+    transform: translateY(-10px);
+}
+
+.mvv-label {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    color: rgba(16, 185, 129, 0.15);
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.mvv-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.mvv-card p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+}
+
+/* Company Profile */
+.company-profile {
+    padding: 10rem 0;
+    background: white;
+}
+
+.section-header {
+    margin-bottom: 5rem;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--text-color);
+}
+
+.profile-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.profile-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.profile-term {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.profile-desc {
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.service-list {
+    list-style: none;
+    padding: 0;
+}
+
+.service-list li {
+    margin-bottom: 0.5rem;
+}
+
+.text-link {
+    color: var(--accent-primary);
+    text-decoration: none;
+    position: relative;
+}
+
+.text-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s var(--easing);
+}
+
+.text-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* About CTA */
+.about-cta {
+    padding: 15rem 0;
+    text-align: center;
+}
+
+.cta-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5rem);
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.cta-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 4rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .philosophy-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .mvv-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        padding-top: 15rem;
+    }
+
+    .breadcrumb {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin-bottom: 2rem;
+        padding: 0;
+    }
+
+    .profile-item {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
