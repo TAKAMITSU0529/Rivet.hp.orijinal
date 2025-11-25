@@ -387,3 +387,139 @@ gsap.to('.visual-box', {
     y: -50,
     rotation: 5
 });
+
+// Network Animation (Digital Constellation)
+const netCanvas = document.getElementById('network-canvas');
+const netCtx = netCanvas.getContext('2d');
+
+let netWidth, netHeight;
+let netParticles = [];
+let netParticleCount = 80; // Default
+let netConnectionDist = 150; // Default
+
+function initNetwork() {
+    netWidth = netCanvas.width = window.innerWidth;
+    netHeight = netCanvas.height = window.innerHeight;
+    netParticles = [];
+
+    // Adjust for mobile
+    if (window.innerWidth < 768) {
+        netParticleCount = 30; // Fewer particles on mobile
+        netConnectionDist = 100; // Shorter connection distance
+    } else {
+        netParticleCount = 80;
+        netConnectionDist = 150;
+    }
+
+    for (let i = 0; i < netParticleCount; i++) {
+        netParticles.push(new NetParticle());
+    }
+}
+
+class NetParticle {
+    constructor() {
+        this.x = Math.random() * netWidth;
+        this.y = Math.random() * netHeight;
+        this.vx = (Math.random() - 0.5) * 0.5; // Very slow movement
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 1.5 + 0.5; // Small dots
+    }
+
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Bounce off edges
+        if (this.x < 0 || this.x > netWidth) this.vx *= -1;
+        if (this.y < 0 || this.y > netHeight) this.vy *= -1;
+    }
+
+    draw() {
+        netCtx.beginPath();
+        netCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        netCtx.fillStyle = 'rgba(16, 185, 129, 0.6)'; // Emerald Green
+        netCtx.fill();
+    }
+}
+
+function animateNetwork() {
+    netCtx.clearRect(0, 0, netWidth, netHeight);
+
+    for (let i = 0; i < netParticles.length; i++) {
+        netParticles[i].update();
+        netParticles[i].draw();
+
+        // Connect particles
+        for (let j = i; j < netParticles.length; j++) {
+            let dx = netParticles[i].x - netParticles[j].x;
+            let dy = netParticles[i].y - netParticles[j].y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < netConnectionDist) {
+                netCtx.beginPath();
+                // Fade out line as distance increases
+                let opacity = 1 - (distance / netConnectionDist);
+                // Very subtle line (max opacity 0.2)
+                netCtx.strokeStyle = `rgba(16, 185, 129, ${opacity * 0.2})`;
+                netCtx.lineWidth = 0.5;
+                netCtx.moveTo(netParticles[i].x, netParticles[i].y);
+                netCtx.lineTo(netParticles[j].x, netParticles[j].y);
+                netCtx.stroke();
+            }
+        }
+    }
+
+    requestAnimationFrame(animateNetwork);
+}
+
+window.addEventListener('resize', initNetwork);
+initNetwork();
+animateNetwork();
+
+// Work Tabs Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const workTabs = document.querySelectorAll('.work-tab');
+    const workCards = document.querySelectorAll('.work-card');
+
+    if (workTabs.length > 0) {
+        // Initial setup: Ensure correct visibility based on active tab (default AI)
+        // HTML already has 'hidden' class on creative cards, but let's be safe
+
+        workTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Active tab styling
+                workTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                const filter = tab.getAttribute('data-filter');
+
+                workCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+
+                    if (filter === 'all' || category === filter) {
+                        card.classList.remove('hidden');
+                        // Simple fade in
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+
+                        // Use requestAnimationFrame for smoother transition start
+                        requestAnimationFrame(() => {
+                            setTimeout(() => {
+                                card.style.transition = 'all 0.4s ease';
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 50);
+                        });
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // Refresh ScrollTrigger to recalculate positions
+                if (typeof ScrollTrigger !== 'undefined') {
+                    setTimeout(() => ScrollTrigger.refresh(), 100);
+                }
+            });
+        });
+    }
+});

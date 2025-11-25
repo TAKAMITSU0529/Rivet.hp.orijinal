@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Rivet - Beyond Creative</title>
+    <meta name="description" content="株式会社Rivetへのお問い合わせ。AIソリューション、Web制作、その他ご相談はこちらから。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="about-page.css">
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <style>
+        /* Advanced Contact Page Styles */
+        /* Inherit gradient from about-body but ensure full height */
+        .about-body {
+            min-height: 100vh;
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            padding-top: 80px;
+            /* Header height */
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Left Side: Info & Visuals */
+        .contact-info-side {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .big-text-bg {
+            position: absolute;
+            top: 5%;
+            left: -10%;
+            font-family: var(--font-display);
+            font-size: 25vw;
+            font-weight: 900;
+            color: rgba(16, 185, 129, 0.03);
+            line-height: 0.8;
+            pointer-events: none;
+            z-index: -1;
+            white-space: nowrap;
+            user-select: none;
+        }
+
+        .contact-header {
+            margin-bottom: 4rem;
+        }
+
+        .contact-label {
+            display: inline-block;
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 100px;
+            background: rgba(16, 185, 129, 0.05);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 5vw, 5rem);
+            line-height: 1.1;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .contact-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 500px;
+            font-weight: 500;
+        }
+
+        /* Phone Section */
+        .phone-section {
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .phone-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            display: block;
+            font-weight: 600;
+        }
+
+        .phone-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s var(--easing);
+            position: relative;
+        }
+
+        .phone-link:hover {
+            color: var(--accent-primary);
+            transform: translateX(10px);
+        }
+
+        .phone-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+            transition: transform 0.3s var(--easing);
+        }
+
+        .phone-link:hover .phone-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        /* Right Side: Form */
+        .contact-form-side {
+            padding: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            padding: 3.5rem;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Tech Decorations */
+        .tech-corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-primary);
+            opacity: 0.3;
+            transition: all 0.3s;
+        }
+
+        .tech-corner.tl {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .tech-corner.tr {
+            top: 0;
+            right: 0;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .tech-corner.bl {
+            bottom: 0;
+            left: 0;
+            border-right: none;
+            border-top: none;
+        }
+
+        .tech-corner.br {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+        }
+
+        .form-card:hover .tech-corner {
+            width: 40px;
+            height: 40px;
+            opacity: 1;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.8rem 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-family: inherit;
+            font-size: 1.1rem;
+            color: var(--text-color);
+            transition: all 0.3s;
+            border-radius: 0;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-bottom-color: var(--accent-primary);
+            padding-left: 1rem;
+            background: rgba(16, 185, 129, 0.03);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Focus Line Animation */
+        .focus-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.4s var(--easing);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .form-input:focus~.focus-line,
+        .form-select:focus~.focus-line,
+        .form-textarea:focus~.focus-line {
+            width: 100%;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            background: none;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                padding-top: 100px;
+            }
+
+            .contact-info-side {
+                padding: 2rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .contact-form-side {
+                padding: 2rem;
+            }
+
+            .big-text-bg {
+                font-size: 30vw;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .contact-desc {
+                margin: 0 auto;
+            }
+
+            .phone-link {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body class="about-body">
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Background Canvas (Network) -->
+    <canvas id="network-canvas"
+        style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; opacity:0.3; pointer-events:none;"></canvas>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navigation -->
+    <header class="header">
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt="Rivet"></a>
+        </div>
+        <nav class="desktop-nav">
+            <a href="index.html#service" class="nav-link"><span>Service</span></a>
+            <a href="index.html#work" class="nav-link"><span>Work</span></a>
+            <a href="index.html#media" class="nav-link"><span>Media</span></a>
+            <a href="about.html" class="nav-link"><span>About Us</span></a>
+            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="contact.html" class="nav-link active"><span>Contact</span></a>
+        </nav>
+    </header>
+
+    <main class="contact-wrapper">
+        <!-- Left Side -->
+        <div class="contact-info-side">
+            <div class="big-text-bg">HELLO.</div>
+
+            <div class="contact-header">
+                <span class="contact-label">Contact Us</span>
+                <h1 class="contact-title">
+                    Let's Build<br>
+                    The Future.
+                </h1>
+                <p class="contact-desc">
+                    AI導入、Web制作、システム開発など、<br>
+                    あなたのビジネスを加速させるパートナーとして。<br>
+                    まずはお気軽にお話ししましょう。
+                </p>
+            </div>
+
+            <div class="phone-section">
+                <span class="phone-label">お電話でのお問い合わせ</span>
+                <a href="tel:0562513167" class="phone-link">
+                    <div class="phone-icon">📞</div>
+                    0562-51-3167
+                </a>
+            </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="contact-form-side">
+            <form class="form-card" action="#" method="POST">
+                <!-- Tech Corners -->
+                <div class="tech-corner tl"></div>
+                <div class="tech-corner tr"></div>
+                <div class="tech-corner bl"></div>
+                <div class="tech-corner br"></div>
+
+                <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="お名前" required>
+                    <div class="focus-line"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="company" class="form-label">Company</label>
+                    <input type="text" id="company" name="company" class="form-input" placeholder="貴社名">
+                    <div class="focus-line"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="メールアドレス" required>
+                    <div class="focus-line"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="category" class="form-label">Subject</label>
+                    <select id="category" name="category" class="form-select" required>
+                        <option value="" disabled selected>お問い合わせ種別</option>
+                        <option value="ai-training">法人向けAI研修について</option>
+                        <option value="ai-consulting">AI導入支援について</option>
+                        <option value="development">システム・ツール開発について</option>
+                        <option value="web-creative">Web制作・クリエイティブについて</option>
+                        <option value="recruit">採用について</option>
+                        <option value="other">その他</option>
+                    </select>
+                    <div class="focus-line"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" name="message" class="form-textarea" placeholder="お問い合わせ内容" rows="3"
+                        required></textarea>
+                    <div class="focus-line"></div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <div class="btn btn-large magnetic" style="width:100%;">
+                        <span class="btn-text">SEND MESSAGE</span>
+                        <div class="btn-icon">→</div>
+                        <div class="btn-fill"></div>
+                    </div>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Rivet">
+                    </div>
+                    <p>AI Business Transformation Company</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="index.html#service">Service</a>
+                    <a href="index.html#work">Work</a>
+                    <a href="index.html#media">Media</a>
+                    <a href="about.html">About Us</a>
+                    <a href="index.html#recruit">Recruit</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rivet. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Copy network animation logic
+        const netCanvas = document.getElementById('network-canvas');
+        const netCtx = netCanvas.getContext('2d');
+        let netWidth, netHeight;
+        let netParticles = [];
+        let netParticleCount = 80;
+        let netConnectionDist = 150;
+
+        function initNetwork() {
+            netWidth = netCanvas.width = window.innerWidth;
+            netHeight = netCanvas.height = window.innerHeight;
+            netParticles = [];
+            if (window.innerWidth < 768) {
+                netParticleCount = 30;
+                netConnectionDist = 100;
+            } else {
+                netParticleCount = 80;
+                netConnectionDist = 150;
+            }
+            for (let i = 0; i < netParticleCount; i++) {
+                netParticles.push(new NetParticle());
+            }
+        }
+
+        class NetParticle {
+            constructor() {
+                this.x = Math.random() * netWidth;
+                this.y = Math.random() * netHeight;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 1.5 + 0.5;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > netWidth) this.vx *= -1;
+                if (this.y < 0 || this.y > netHeight) this.vy *= -1;
+            }
+            draw() {
+                netCtx.beginPath();
+                netCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                netCtx.fillStyle = 'rgba(16, 185, 129, 0.6)';
+                netCtx.fill();
+            }
+        }
+
+        function animateNetwork() {
+            netCtx.clearRect(0, 0, netWidth, netHeight);
+            for (let i = 0; i < netParticles.length; i++) {
+                netParticles[i].update();
+                netParticles[i].draw();
+                for (let j = i; j < netParticles.length; j++) {
+                    let dx = netParticles[i].x - netParticles[j].x;
+                    let dy = netParticles[i].y - netParticles[j].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < netConnectionDist) {
+                        netCtx.beginPath();
+                        let opacity = 1 - (distance / netConnectionDist);
+                        netCtx.strokeStyle = `rgba(16, 185, 129, ${opacity * 0.2})`;
+                        netCtx.lineWidth = 0.5;
+                        netCtx.moveTo(netParticles[i].x, netParticles[i].y);
+                        netCtx.lineTo(netParticles[j].x, netParticles[j].y);
+                        netCtx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateNetwork);
+        }
+        window.addEventListener('resize', initNetwork);
+        initNetwork();
+        animateNetwork();
+    </script>
+</body>
+
+</html>

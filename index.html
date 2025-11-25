@@ -24,8 +24,10 @@
 </head>
 
 <body class="loading">
-    <!-- Background Canvas -->
+    <!-- Background Canvas (Existing Smoke) -->
     <canvas id="hero-canvas"></canvas>
+    <!-- Network Canvas (New Digital Constellation) -->
+    <canvas id="network-canvas"></canvas>
 
     <!-- Custom Cursor -->
     <div class="cursor-dot"></div>
@@ -49,10 +51,10 @@
         <nav class="desktop-nav">
             <a href="#service" class="nav-link"><span>Service</span></a>
             <a href="#work" class="nav-link"><span>Work</span></a>
-            <a href="#blog" class="nav-link"><span>Blog</span></a>
+            <a href="#media" class="nav-link"><span>Media</span></a>
+            <a href="about.html" class="nav-link"><span>About Us</span></a>
             <a href="#recruit" class="nav-link"><span>Recruit</span></a>
-            <a href="#about" class="nav-link"><span>About</span></a>
-            <a href="#contact" class="nav-link"><span>Contact</span></a>
+            <a href="contact.html" class="nav-link"><span>Contact</span></a>
         </nav>
         <div class="menu-toggle">
             <div class="hamburger">
@@ -230,9 +232,14 @@
                     <h2 class="section-title">Case Study</h2>
                 </div>
 
+                <div class="work-tabs">
+                    <button class="work-tab active" data-filter="ai">AI Solutions</button>
+                    <button class="work-tab" data-filter="creative">Creative / Web</button>
+                </div>
+
                 <div class="work-grid">
                     <!-- Work Item 1 (AI) -->
-                    <div class="work-card" data-cursor="View">
+                    <div class="work-card" data-cursor="View" data-category="ai">
                         <div class="work-image">
                             <div class="work-img-placeholder"
                                 style="background: linear-gradient(45deg, #0f172a, #1e293b);"></div>
@@ -254,7 +261,7 @@
                     </div>
 
                     <!-- Work Item 2 (Web) -->
-                    <div class="work-card" data-cursor="View">
+                    <div class="work-card hidden" data-cursor="View" data-category="creative">
                         <div class="work-image">
                             <div class="work-img-placeholder"
                                 style="background: linear-gradient(45deg, #f0f9ff, #e0f2fe);"></div>
@@ -276,7 +283,7 @@
                     </div>
 
                     <!-- Work Item 3 (AI) -->
-                    <div class="work-card" data-cursor="View">
+                    <div class="work-card" data-cursor="View" data-category="ai">
                         <div class="work-image">
                             <div class="work-img-placeholder"
                                 style="background: linear-gradient(45deg, #fff7ed, #ffedd5);"></div>
@@ -296,16 +303,82 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Work Item 4 (AI - New) -->
+                    <div class="work-card" data-cursor="View" data-category="ai">
+                        <div class="work-image">
+                            <div class="work-img-placeholder"
+                                style="background: linear-gradient(45deg, #f0fdf4, #dcfce7);"></div>
+                            <div class="work-overlay"></div>
+                        </div>
+                        <div class="work-content">
+                            <div class="work-meta">
+                                <span class="work-cat">AI Analysis</span>
+                                <span class="work-date">2024.08</span>
+                            </div>
+                            <h3 class="work-title">物流業界向け<br>在庫最適化AI</h3>
+                            <p class="work-desc">過去の販売データと季節要因を分析し、最適な在庫数を予測。廃棄ロスを20%削減し、利益率を改善。</p>
+                            <div class="work-tags">
+                                <span>Prediction</span>
+                                <span>Python</span>
+                                <span>Data Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Work Item 5 (Creative) -->
+                    <div class="work-card hidden" data-cursor="View" data-category="creative">
+                        <div class="work-image">
+                            <div class="work-img-placeholder"
+                                style="background: linear-gradient(45deg, #fdf2f8, #fce7f3);"></div>
+                            <div class="work-overlay"></div>
+                        </div>
+                        <div class="work-content">
+                            <div class="work-meta">
+                                <span class="work-cat">Marketing / Web</span>
+                                <span class="work-date">2024.09</span>
+                            </div>
+                            <h3 class="work-title">美容クリニック<br>LP制作 & 広告運用</h3>
+                            <p class="work-desc">新規集客を目的としたLP制作とSNS広告運用。ターゲット分析に基づいたデザインでCVRを2.5倍に改善。</p>
+                            <div class="work-tags">
+                                <span>LP</span>
+                                <span>Ads</span>
+                                <span>Marketing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Work Item 6 (Creative - New) -->
+                    <div class="work-card hidden" data-cursor="View" data-category="creative">
+                        <div class="work-image">
+                            <div class="work-img-placeholder"
+                                style="background: linear-gradient(45deg, #fafafa, #e5e5e5);"></div>
+                            <div class="work-overlay"></div>
+                        </div>
+                        <div class="work-content">
+                            <div class="work-meta">
+                                <span class="work-cat">Video Production</span>
+                                <span class="work-date">2024.07</span>
+                            </div>
+                            <h3 class="work-title">アパレルブランド<br>ブランディング映像</h3>
+                            <p class="work-desc">ブランドの世界観を表現するシネマティックなプロモーション映像制作。SNSでのエンゲージメント率が向上。</p>
+                            <div class="work-tags">
+                                <span>Video</span>
+                                <span>Branding</span>
+                                <span>SNS</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Blog Section -->
-        <section class="blog" id="blog">
+        <!-- Media Section -->
+        <section class="blog" id="media">
             <div class="container">
                 <div class="section-header">
                     <span class="section-label">Latest Insights</span>
-                    <h2 class="section-title">Media & Blog</h2>
+                    <h2 class="section-title">Media</h2>
                 </div>
             </div>
 
@@ -411,7 +484,9 @@
                     <div class="about-visual">
                         <div class="visual-box">
                             <div class="glowing-orb"></div>
-                            <div class="glass-panel"></div>
+                            <div class="glass-panel">
+                                <img src="images/Rivetロゴのみ.png" alt="Rivet Logo" class="about-logo">
+                            </div>
                         </div>
                     </div>
                     <div class="about-content">
@@ -489,10 +564,10 @@
                 <div class="footer-nav">
                     <a href="#service">Service</a>
                     <a href="#work">Work</a>
-                    <a href="#blog">Blog</a>
+                    <a href="#media">Media</a>
+                    <a href="about.html">About Us</a>
                     <a href="#recruit">Recruit</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
+                    <a href="contact.html">Contact</a>
                     <a href="#">Privacy Policy</a>
                 </div>
             </div>

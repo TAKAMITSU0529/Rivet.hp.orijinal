@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Solutions | Rivet - Beyond Creative</title>
+    <meta name="description" content="RivetのAIソリューション事業。法人向け生成AI研修、導入支援、受託開発を通じて、企業のDXとビジネス変革を強力にサポートします。">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="about-page.css"> <!-- Reusing ambient bg styles -->
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <style>
+        /* Service Page Specific Styles */
+        .service-hero {
+            padding: 15rem 0 8rem;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-section {
+            padding: 8rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .service-header {
+            margin-bottom: 4rem;
+        }
+
+        .service-num {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(16, 185, 129, 0.2);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #059669, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-desc {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: 3rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .flow-step {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: var(--accent-primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body class="about-body">
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Background Canvas (Network) -->
+    <canvas id="network-canvas"
+        style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; opacity:0.3; pointer-events:none;"></canvas>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Navigation -->
+    <header class="header">
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt="Rivet"></a>
+        </div>
+        <nav class="desktop-nav">
+            <a href="index.html#service" class="nav-link active"><span>Service</span></a>
+            <a href="index.html#work" class="nav-link"><span>Work</span></a>
+            <a href="index.html#media" class="nav-link"><span>Media</span></a>
+            <a href="about.html" class="nav-link"><span>About Us</span></a>
+            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="contact.html" class="nav-link"><span>Contact</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="container">
+                <div class="hero-content-left">
+                    <div class="breadcrumb">
+                        <a href="index.html">Home</a> / <a href="index.html#service">Service</a> / <span>AI
+                            Solutions</span>
+                    </div>
+                    <h1 class="page-title">
+                        <span class="block-reveal">AI</span><br>
+                        <span class="block-reveal highlight">Solutions</span>
+                    </h1>
+                    <p class="hero-description">
+                        最先端のAI技術を、ビジネスの現場へ。<br>
+                        研修から開発まで、一気通貫でDXを支援します。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 01 AI Training -->
+        <section class="service-section" id="training">
+            <div class="container">
+                <div class="service-header">
+                    <div class="service-num">01</div>
+                    <h2 class="service-title">法人向け生成AI研修</h2>
+                    <p class="service-desc">
+                        ChatGPTをはじめとする生成AIの基礎から、実務での具体的な活用方法まで。
+                        組織全体のAIリテラシーを底上げし、自走できる人材を育成するための実践的なカリキュラムを提供します。
+                    </p>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3 class="feature-title">リテラシー・基礎研修</h3>
+                        <ul class="feature-list">
+                            <li>生成AIの仕組みとリスク管理</li>
+                            <li>ChatGPT/Gemini等の基本操作</li>
+                            <li>セキュリティとコンプライアンス</li>
+                            <li>全社員向け導入ガイダンス</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⌨️</div>
+                        <h3 class="feature-title">プロンプトエンジニアリング</h3>
+                        <ul class="feature-list">
+                            <li>効果的な指示出しの型（フレームワーク）</li>
+                            <li>精度を高める追加指示テクニック</li>
+                            <li>ハルシネーション対策</li>
+                            <li>実践ワークショップ形式</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💼</div>
+                        <h3 class="feature-title">職種別・実践活用</h3>
+                        <ul class="feature-list">
+                            <li>営業：提案書・メール作成自動化</li>
+                            <li>マーケ：記事作成・SNS運用効率化</li>
+                            <li>事務：議事録要約・Excel連携</li>
+                            <li>開発：コード生成・デバッグ支援</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02 AI Consulting -->
+        <section class="service-section" id="consulting">
+            <div class="container">
+                <div class="service-header">
+                    <div class="service-num">02</div>
+                    <h2 class="service-title">AI導入支援コンサルティング</h2>
+                    <p class="service-desc">
+                        「AIをどう活用すればいいかわからない」という課題に対し、業務フローの分析から最適なツールの選定、導入、定着までを伴走型で支援します。
+                    </p>
+                </div>
+                <div class="feature-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="feature-card">
+                        <h3 class="feature-title">導入支援フロー</h3>
+                        <div class="flow-step">
+                            <div class="step-num">1</div>
+                            <div class="step-content">
+                                <h4>課題ヒアリング・業務分析</h4>
+                                <p>現状の業務フローを可視化し、AI導入効果が高い領域を特定します。</p>
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-num">2</div>
+                            <div class="step-content">
+                                <h4>ツール選定・PoC（実証実験）</h4>
+                                <p>最適なAIツールを選定し、小規模なテスト運用で効果を検証します。</p>
+                            </div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-num">3</div>
+                            <div class="step-content">
+                                <h4>本導入・ガイドライン策定</h4>
+                                <p>全社展開に向けた運用ルールの策定と環境構築を行います。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <h3 class="feature-title">期待される効果</h3>
+                        <ul class="feature-list" style="font-size: 1.1rem; line-height: 2;">
+                            <li>業務時間の削減（月間20時間/人〜）</li>
+                            <li>属人化の解消と業務品質の均一化</li>
+                            <li>クリエイティブな業務へのリソース集中</li>
+                            <li>新たなビジネスアイデアの創出</li>
+                            <li>社内DX文化の醸成</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 AI Development -->
+        <section class="service-section" id="development" style="border-bottom: none;">
+            <div class="container">
+                <div class="service-header">
+                    <div class="service-num">03</div>
+                    <h2 class="service-title">生成AI受託開発</h2>
+                    <p class="service-desc">
+                        市販のツールでは解決できない固有の課題に対して、LLM（大規模言語モデル）を活用したオーダーメイドのシステムやアプリケーションを開発します。
+                    </p>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3 class="feature-title">社内ナレッジ検索チャットボット</h3>
+                        <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            社内マニュアルや過去のドキュメントを学習させ、質問に対して即座に回答するRAG（検索拡張生成）システムを構築。情報検索時間を劇的に短縮します。
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3 class="feature-title">業務特化型AIツール開発</h3>
+                        <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            日報の自動分析、契約書の自動チェック、顧客対応の自動化など、特定の業務フローに完全にフィットした専用AIツールを開発します。
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h3 class="feature-title">API連携・システム統合</h3>
+                        <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.6;">
+                            既存の基幹システムやSlack/TeamsなどのチャットツールとOpenAI API等を連携させ、シームレスなAI活用環境を構築します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="about-cta">
+            <div class="container">
+                <div class="cta-inner">
+                    <h2 class="cta-title">Start Your AI Journey</h2>
+                    <p class="cta-text">
+                        AI活用に関するご相談、お見積もりなど<br>
+                        お気軽にお問い合わせください。
+                    </p>
+                    <a href="contact.html" class="btn btn-large magnetic">
+                        <span class="btn-text">お問い合わせ</span>
+                        <div class="btn-icon">→</div>
+                        <div class="btn-fill"></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="Rivet">
+                    </div>
+                    <p>AI Business Transformation Company</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="index.html#service">Service</a>
+                    <a href="index.html#work">Work</a>
+                    <a href="index.html#media">Media</a>
+                    <a href="about.html">About Us</a>
+                    <a href="index.html#recruit">Recruit</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Rivet. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <!-- Simple script for network animation on this page too -->
+    <script>
+        // Copy network animation logic for this page
+        const netCanvas = document.getElementById('network-canvas');
+        const netCtx = netCanvas.getContext('2d');
+        let netWidth, netHeight;
+        let netParticles = [];
+        let netParticleCount = 80;
+        let netConnectionDist = 150;
+
+        function initNetwork() {
+            netWidth = netCanvas.width = window.innerWidth;
+            netHeight = netCanvas.height = window.innerHeight;
+            netParticles = [];
+            if (window.innerWidth < 768) {
+                netParticleCount = 30;
+                netConnectionDist = 100;
+            } else {
+                netParticleCount = 80;
+                netConnectionDist = 150;
+            }
+            for (let i = 0; i < netParticleCount; i++) {
+                netParticles.push(new NetParticle());
+            }
+        }
+
+        class NetParticle {
+            constructor() {
+                this.x = Math.random() * netWidth;
+                this.y = Math.random() * netHeight;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 1.5 + 0.5;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > netWidth) this.vx *= -1;
+                if (this.y < 0 || this.y > netHeight) this.vy *= -1;
+            }
+            draw() {
+                netCtx.beginPath();
+                netCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                netCtx.fillStyle = 'rgba(16, 185, 129, 0.6)';
+                netCtx.fill();
+            }
+        }
+
+        function animateNetwork() {
+            netCtx.clearRect(0, 0, netWidth, netHeight);
+            for (let i = 0; i < netParticles.length; i++) {
+                netParticles[i].update();
+                netParticles[i].draw();
+                for (let j = i; j < netParticles.length; j++) {
+                    let dx = netParticles[i].x - netParticles[j].x;
+                    let dy = netParticles[i].y - netParticles[j].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < netConnectionDist) {
+                        netCtx.beginPath();
+                        let opacity = 1 - (distance / netConnectionDist);
+                        netCtx.strokeStyle = `rgba(16, 185, 129, ${opacity * 0.2})`;
+                        netCtx.lineWidth = 0.5;
+                        netCtx.moveTo(netParticles[i].x, netParticles[i].y);
+                        netCtx.lineTo(netParticles[j].x, netParticles[j].y);
+                        netCtx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateNetwork);
+        }
+        window.addEventListener('resize', initNetwork);
+        initNetwork();
+        animateNetwork();
+    </script>
+</body>
+
+</html>
