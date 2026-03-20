@@ -40,7 +40,7 @@ window.addEventListener('mousemove', (e) => {
 });
 
 // Add hover effect to interactive elements
-const interactiveElements = document.querySelectorAll('a, button, .service-card, .work-card, .blog-card');
+const interactiveElements = document.querySelectorAll('a, button, .service-card, .work-card, .blog-card, .str-card');
 interactiveElements.forEach(el => {
     el.addEventListener('mouseenter', () => {
         cursorOutline.classList.add('hovered');
@@ -521,5 +521,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    }
+
+    // ── Strengths Section: scroll reveal ──
+    const strCards = document.querySelectorAll('.str-card');
+    if (strCards.length) {
+        const strObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    strObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        strCards.forEach(card => strObserver.observe(card));
+    }
+
+    // ── Strengths: number counter animation ──
+    const strNumbers = document.querySelectorAll('.str-number');
+    if (strNumbers.length) {
+        const numObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.textContent, 10);
+                    let current = 0;
+                    const step = Math.ceil(target / 20);
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        el.textContent = String(current).padStart(2, '0');
+                    }, 40);
+                    numObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        strNumbers.forEach(el => numObserver.observe(el));
     }
 });
