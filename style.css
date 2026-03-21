@@ -3934,14 +3934,18 @@ a.blog-card:hover .blog-img-placeholder {
     /* ── Hero Section ── */
     .hero {
         min-height: 100svh;
+        padding-top: 8rem; /* Push content down further for better balance */
     }
 
     .hero-title {
-        font-size: clamp(2rem, 8vw, 3rem);
+        font-size: clamp(2.8rem, 11vw, 4rem);
+        line-height: 1.1;
+        margin-bottom: 2.5rem;
     }
 
     .hero-jp-copy {
-        font-size: clamp(0.85rem, 3vw, 1rem);
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+        line-height: 1.8;
     }
 
     /* ── Recruit Section ── */
