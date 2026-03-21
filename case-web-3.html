@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>アパレルブランド ブランディング映像制作 | Case Study | Rivet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+<body class="loading">
+    <canvas id="hero-canvas"></canvas>
+    <canvas id="network-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-text">Rivet</div>
+            <div class="loader-bar-bg"><div class="loader-bar"></div></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Rivet"></a></div>
+        <nav class="desktop-nav">
+            <a href="index.html#service" class="nav-link"><span>Service</span></a>
+            <a href="index.html#work" class="nav-link"><span>Work</span></a>
+            <a href="index.html#media" class="nav-link"><span>Media</span></a>
+            <a href="about.html" class="nav-link"><span>About Us</span></a>
+            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="contact.html" class="nav-link"><span>Contact</span></a>
+        </nav>
+        <div class="menu-toggle"><div class="hamburger"><span></span><span></span></div></div>
+    </header>
+
+    <main>
+        <section class="case-hero">
+            <div class="container">
+                <nav class="case-breadcrumb">
+                    <a href="index.html">HOME</a><span>/</span>
+                    <a href="index.html#work">CASE STUDY</a><span>/</span>
+                    アパレルブランド ブランディング映像制作
+                </nav>
+                <span class="case-hero-cat">Video / Branding</span>
+                <h1>ブランド世界観を映像で表現。<br>SNS再生数120万回・EC売上が前月比2.4倍</h1>
+                <p class="case-hero-client"><strong>○○アパレル株式会社 様</strong> &nbsp;|&nbsp; 2025年1月</p>
+            </div>
+        </section>
+
+        <section class="case-body">
+            <div class="container">
+                <div class="case-layout">
+                    <div class="case-main">
+                        <div class="case-main-image">
+                            <div class="case-main-image-placeholder"
+                                style="background: linear-gradient(135deg, #1c1917 0%, #44403c 50%, #78716c 100%); background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=900&q=80'); background-size: cover; background-position: center;"></div>
+                        </div>
+
+                        <div class="case-tabs">
+                            <button class="case-tab active" onclick="switchTab(this,'before-w3')">導入前の課題</button>
+                            <button class="case-tab" onclick="switchTab(this,'after-w3')">導入後の効果</button>
+                        </div>
+
+                        <div class="case-tab-panel case-tab-panel--before active" id="before-w3">
+                            <ul class="case-issue-list">
+                                <li>
+                                    <span class="case-issue-icon">🎬</span>
+                                    InstagramやTikTokでの発信はしていたが、スマートフォンで撮影した素材をそのまま投稿しており、ブランドの世界観・高級感が全く伝わっていなかった。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">🛍️</span>
+                                    ECサイトへの流入はあるものの「購入に至らない」という状況で、商品の魅力・素材感・着用シーンが伝わるコンテンツが不足していた。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">🎨</span>
+                                    ブランドのコンセプトやターゲット像が社内でも共有されておらず、発信内容がバラバラで統一感のないSNSになっていた。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">📊</span>
+                                    広告予算を動画制作に投じた経験がなく、「映像にどのくらい費用をかければ回収できるのか」がわからずなかなか踏み出せていなかった。
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="case-tab-panel case-tab-panel--after" id="after-w3">
+                            <div class="case-effect-grid">
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">120万</div>
+                                    <div class="case-effect-label">SNS再生数<br>（公開30日間）</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">2.4×</div>
+                                    <div class="case-effect-label">EC売上<br>（前月比）</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">+4,200</div>
+                                    <div class="case-effect-label">Instagramフォロワー<br>増加数</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">5本</div>
+                                    <div class="case-effect-label">再利用可能な<br>ブランド映像素材</div>
+                                </div>
+                            </div>
+                            <ul class="case-effect-list">
+                                <li>✅ ブランドコンセプトのヒアリングからビジュアルアイデンティティを再定義。「都市に生きる大人の日常」をテーマにした映像シナリオを企画。</li>
+                                <li>✅ プロカメラマン・モデル・ロケーションを手配し1日撮影を実施。縦型ショート動画・横型ブランドムービーの素材を同時収録。</li>
+                                <li>✅ Adobe Premiere Pro + After Effects でカラーグレーディング・テロップデザインを統一。ブランドトーンに沿った映像に仕上げ。</li>
+                                <li>✅ Instagram Reels・TikTok・YouTube Shortsそれぞれに最適化したフォーマットでリリース。投稿時間・ハッシュタグ戦略も提案。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <aside class="case-sidebar">
+                        <div class="case-company-card">
+                            <h4>Company Info</h4>
+                            <table class="case-company-table">
+                                <tr><th>企業名</th><td>○○アパレル株式会社</td></tr>
+                                <tr><th>業種</th><td>アパレル・ファッション</td></tr>
+                                <tr><th>従業員数</th><td>10〜30名</td></tr>
+                                <tr><th>所在地</th><td>大阪府</td></tr>
+                                <tr><th>制作時期</th><td>2025年1月</td></tr>
+                            </table>
+                            <div class="case-company-tags">
+                                <span>Video</span>
+                                <span>Branding</span>
+                                <span>SNS運用</span>
+                                <span>EC支援</span>
+                            </div>
+                        </div>
+                        <div class="case-cta-card">
+                            <p>ブランドの世界観を<br>映像で伝えたい方へ</p>
+                            <a href="contact.html" class="case-cta-btn">無料相談する →</a>
+                        </div>
+                    </aside>
+                </div>
+                <a href="index.html#work" class="case-back">← Case Study 一覧に戻る</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+    function switchTab(btn, panelId) {
+        btn.closest('.case-main').querySelectorAll('.case-tab').forEach(t => t.classList.remove('active'));
+        btn.closest('.case-main').querySelectorAll('.case-tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(panelId).classList.add('active');
+    }
+    </script>
+</body>
+</html>

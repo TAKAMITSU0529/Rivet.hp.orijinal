@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notion AIで社内ナレッジを一元管理 | Media | Rivet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+<body class="loading">
+    <canvas id="hero-canvas"></canvas>
+    <canvas id="network-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-text">Rivet</div>
+            <div class="loader-bar-bg"><div class="loader-bar"></div></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Rivet"></a></div>
+        <nav class="desktop-nav">
+            <a href="index.html#service" class="nav-link"><span>Service</span></a>
+            <a href="index.html#work" class="nav-link"><span>Work</span></a>
+            <a href="index.html#media" class="nav-link"><span>Media</span></a>
+            <a href="about.html" class="nav-link"><span>About Us</span></a>
+            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="contact.html" class="nav-link"><span>Contact</span></a>
+        </nav>
+        <div class="menu-toggle"><div class="hamburger"><span></span><span></span></div></div>
+    </header>
+
+    <main>
+        <section class="media-hero" style="background-image: url('https://images.unsplash.com/photo-1519389676-2f9f908b01b5?auto=format&fit=crop&w=1400&q=80'); background-size: cover; background-position: center;">
+            <div class="media-hero-gradient" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.45) 100%);"></div>
+            <div class="container media-hero-inner">
+                <nav class="media-breadcrumb">
+                    <a href="index.html">HOME</a><span>/</span>
+                    <a href="index.html#media">MEDIA</a><span>/</span>
+                    AI活用30日間トライアル Day09
+                </nav>
+                <span class="media-hero-tag">Notion AI</span>
+                <h1>Notion AIで社内ナレッジを一元管理<br>| AI活用30日間トライアル Day09</h1>
+                <div class="media-hero-meta">
+                    <span>2025.05.14</span>
+                    <span class="dot">|</span>
+                    <span>読了時間：約6分</span>
+                    <span class="dot">|</span>
+                    <span>Rivet編集部</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="media-body">
+            <div class="container">
+                <div class="media-layout">
+                    <div class="media-content">
+
+                        <p class="media-lead">
+                            「あの資料どこだっけ？」「それ、田中さんしか知らない情報なんだよね」——こんな会話が社内で毎日起きていませんか？Notion AIを使ったナレッジ管理で、情報の属人化を解消した実践録をお届けします。
+                        </p>
+
+                        <div class="media-section">
+                            <h2>社内情報の属人化がもたらすコスト</h2>
+                            <p>情報の属人化とは、特定の人だけが重要な知識・手順・ノウハウを持っている状態のことです。これが起きると以下の問題が発生します。</p>
+                            <ul>
+                                <li>担当者が休む・退職すると業務が止まる</li>
+                                <li>新人への引き継ぎに膨大な時間がかかる</li>
+                                <li>同じ質問を何度もベテラン社員が答えさせられる</li>
+                                <li>情報がSlack・メール・ドライブに散在して探せない</li>
+                            </ul>
+                            <div class="media-highlight">
+                                <p>📊 <strong>調査結果：</strong>ある中小企業の社員アンケートでは、<strong>1日平均1.8時間</strong>を「情報を探す時間」に費やしていることがわかりました。50人規模の企業で換算すると、年間約<strong>2,250万円</strong>相当の時間コストです。</p>
+                            </div>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>Notion AIでできること</h2>
+                            <p>Notion AIは、Notionのページやデータベース内に蓄積された情報をAIが読み込み、自然言語で質問・要約・生成ができるツールです。</p>
+
+                            <h3>① 自然言語でナレッジを検索</h3>
+                            <p>「新規顧客の契約フローを教えて」と検索バーに入力すると、社内Wikiから関連ページを引っ張り出して要約して表示してくれます。キーワードが一致しなくても文脈で検索できるのがポイントです。</p>
+
+                            <h3>② 長文ドキュメントの即時要約</h3>
+                            <p>10ページある会議議事録も「要約して」の一言で3行サマリーに。新メンバーが過去の経緯を把握する時間が劇的に短縮されます。</p>
+
+                            <h3>③ テンプレートの自動生成</h3>
+                            <p>「○○業界向けの提案書テンプレートを作って」と指示すると、社内の過去提案書を参考にしながら新しいテンプレートを生成します。</p>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>実際の導入ステップ</h2>
+                            <div class="media-step">
+                                <div class="media-step-num">1</div>
+                                <div class="media-step-text">
+                                    <strong>情報の棚卸しとカテゴリ設計</strong>
+                                    まず「何をNotionに入れるか」を決めます。業務マニュアル、FAQ、プロジェクト記録、顧客情報などカテゴリを定義して構造を決めましょう。
+                                </div>
+                            </div>
+                            <div class="media-step">
+                                <div class="media-step-num">2</div>
+                                <div class="media-step-text">
+                                    <strong>既存資料の移行（80点主義で）</strong>
+                                    完璧を目指すと移行が終わりません。まず「よく使う資料」から移行し、後から追記する運用で進めましょう。Notion AIが不完全なページでも補完してくれます。
+                                </div>
+                            </div>
+                            <div class="media-step">
+                                <div class="media-step-num">3</div>
+                                <div class="media-step-text">
+                                    <strong>Notion AI の有効化と全社周知</strong>
+                                    Notion AIプランに移行後、使い方を1ページのガイドにまとめて全社共有。「質問があれば人に聞く前にNotion AIに聞く」文化を浸透させます。
+                                </div>
+                            </div>
+                            <div class="media-step">
+                                <div class="media-step-num">4</div>
+                                <div class="media-step-text">
+                                    <strong>更新ルールを決めて維持する</strong>
+                                    「プロジェクト完了時にNotionへ記録する」「マニュアル変更時は必ず更新する」といったルールを設けないと、情報が古くなりAIの回答精度も落ちます。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>導入3ヶ月後の変化</h2>
+                            <p>Rivetの支援先企業（従業員30名・IT商社）での導入3ヶ月後のアンケート結果をご紹介します。</p>
+                            <ul>
+                                <li>「情報を探す時間が短くなった」と回答した社員：<strong>87%</strong></li>
+                                <li>新入社員の業務習熟にかかる期間：<strong>3ヶ月→1.5ヶ月</strong>に短縮</li>
+                                <li>ベテラン社員への同一質問件数：<strong>月平均40件→12件</strong>に削減</li>
+                            </ul>
+                            <p>特に「新人が自己解決できるようになった」という声が多く、ベテラン社員がより高付加価値な業務に集中できるようになったと報告を受けています。</p>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>まとめ</h2>
+                            <p>Notion AIは「情報の民主化」を実現するツールです。特定の人だけが持っていた知識を、組織全体の資産に変えることができます。</p>
+                            <p>重要なのは「完璧な構造を最初から作ろうとしない」こと。まず始めて、AIに育ててもらう感覚で運用することが成功のカギです。</p>
+                        </div>
+
+                        <a href="index.html#media" class="media-back">← Media 一覧に戻る</a>
+                    </div>
+
+                    <aside class="media-sidebar">
+                        <div class="media-sidebar-card">
+                            <h4>Author</h4>
+                            <div class="media-author">
+                                <div class="media-author-avatar">R</div>
+                                <div>
+                                    <div class="media-author-name">Rivet編集部</div>
+                                    <div class="media-author-role">AI活用・Web制作の実践情報を発信</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-sidebar-card">
+                            <h4>Tags</h4>
+                            <div class="media-tags-list">
+                                <span>Notion AI</span>
+                                <span>社内ナレッジ</span>
+                                <span>情報管理</span>
+                                <span>業務効率化</span>
+                                <span>属人化解消</span>
+                                <span>30日トライアル</span>
+                            </div>
+                        </div>
+                        <div class="media-cta-card">
+                            <p>社内のAI活用を一緒に設計しませんか？</p>
+                            <a href="contact.html" class="media-cta-btn">無料相談する →</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

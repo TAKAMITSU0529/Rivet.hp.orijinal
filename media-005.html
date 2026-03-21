@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年のAIトレンド予測：エージェント型AIの台頭 | Media | Rivet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+<body class="loading">
+    <canvas id="hero-canvas"></canvas>
+    <canvas id="network-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-text">Rivet</div>
+            <div class="loader-bar-bg"><div class="loader-bar"></div></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Rivet"></a></div>
+        <nav class="desktop-nav">
+            <a href="index.html#service" class="nav-link"><span>Service</span></a>
+            <a href="index.html#work" class="nav-link"><span>Work</span></a>
+            <a href="index.html#media" class="nav-link"><span>Media</span></a>
+            <a href="about.html" class="nav-link"><span>About Us</span></a>
+            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="contact.html" class="nav-link"><span>Contact</span></a>
+        </nav>
+        <div class="menu-toggle"><div class="hamburger"><span></span><span></span></div></div>
+    </header>
+
+    <main>
+        <section class="media-hero" style="background-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1400&q=80'); background-size: cover; background-position: center;">
+            <div class="media-hero-gradient" style="background: linear-gradient(to bottom, rgba(80,10,30,0.45) 0%, rgba(50,5,15,0.65) 100%);"></div>
+            <div class="container media-hero-inner">
+                <nav class="media-breadcrumb">
+                    <a href="index.html">HOME</a><span>/</span>
+                    <a href="index.html#media">MEDIA</a><span>/</span>
+                    Trend
+                </nav>
+                <span class="media-hero-tag">Trend</span>
+                <h1>2025年のAIトレンド予測：<br>エージェント型AIの台頭</h1>
+                <div class="media-hero-meta">
+                    <span>2025.04.20</span>
+                    <span class="dot">|</span>
+                    <span>読了時間：約8分</span>
+                    <span class="dot">|</span>
+                    <span>Rivet編集部</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="media-body">
+            <div class="container">
+                <div class="media-layout">
+                    <div class="media-content">
+
+                        <p class="media-lead">
+                            ChatGPTが登場した2022年から約3年。AIは「質問に答えるツール」から「自律的にタスクを遂行するエージェント」へと進化しています。2025年のビジネスを変えるAIトレンドを、実例と共に解説します。
+                        </p>
+
+                        <div class="media-section">
+                            <h2>エージェント型AIとは何か</h2>
+                            <p>従来のAI（ChatGPTなど）は「質問→回答」という1回限りのやり取りでした。エージェント型AIは、目標を与えると自分でツールを使い、複数のステップを踏んで目標を達成しようとします。</p>
+                            <p>例えば「競合他社の価格を調べてスプレッドシートにまとめて」と指示すると、エージェント型AIはWebを自動検索し、データを収集し、表を作成するという一連の作業を人間の介入なしにこなします。</p>
+                            <div class="media-highlight">
+                                <p>🤖 <strong>ChatGPT vs AIエージェント：</strong><br>
+                                ChatGPT：「〇〇について教えて」→ 回答をもらう（1往復）<br>
+                                AIエージェント：「〇〇をやっておいて」→ 勝手にやってくれる（自律実行）</p>
+                            </div>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>2025年注目のAIエージェント5選</h2>
+
+                            <h3>① OpenAI Operator</h3>
+                            <p>OpenAIが2025年初頭にリリースした「Operator」は、Webブラウザを自律的に操作できるエージェントです。「〇〇のレストランを予約して」「このフォームに入力して送信して」といった指示を実行できます。</p>
+
+                            <h3>② Anthropic Claude Computer Use</h3>
+                            <p>Claudeがパソコンの画面を「見て」操作できる機能です。スクリーンショットを解析し、マウスクリック・キーボード入力を行うことで、あらゆるデスクトップアプリを操作できます。RPA（ロボティック・プロセス・オートメーション）の代替になる可能性があります。</p>
+
+                            <h3>③ AutoGPT / CrewAI</h3>
+                            <p>複数のAIエージェントがチームとして協調して作業するフレームワークです。「リサーチ担当エージェント」「ライターエージェント」「レビュアーエージェント」が分業して、高品質なアウトプットを自動生成します。</p>
+
+                            <h3>④ n8n / Make（ノーコードAI自動化）</h3>
+                            <p>プログラミング不要でAIと各種ツール（Gmail・Slack・Notion・Salesforceなど）を連携できるオートメーションツールです。「新規リードがSalesforceに登録されたらAIで分析してSlackに通知する」といったフローが数十分で構築できます。</p>
+
+                            <h3>⑤ Devin（AIソフトウェアエンジニア）</h3>
+                            <p>コードを書くだけでなく、バグを調査し、テストを実行し、デプロイまでをこなすAIエンジニア「Devin」が登場しました。まだ完全に代替はできませんが、単純なタスクならエンジニアの工数を大幅に削減できます。</p>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>ビジネスへのインパクト</h2>
+                            <p>エージェント型AIの普及がビジネスに与える影響は計り知れません。特に以下の領域で変化が起きています。</p>
+                            <ul>
+                                <li><strong>カスタマーサポート：</strong>単純な問い合わせ対応は100%AIエージェントが担当し、複雑なケースだけ人間に転送するハイブリッド体制が標準化</li>
+                                <li><strong>マーケティング：</strong>広告クリエイティブの生成→A/Bテスト→予算最適化のサイクルをAIエージェントが自律実行</li>
+                                <li><strong>経理・法務：</strong>契約書のレビュー、請求書の処理、コンプライアンスチェックをエージェントが24時間自動処理</li>
+                                <li><strong>採用：</strong>求人票作成→応募者スクリーニング→面接日程調整までをAIエージェントがワンストップで対応</li>
+                            </ul>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>中小企業が今すぐ始めるべき3つのこと</h2>
+                            <div class="media-step">
+                                <div class="media-step-num">1</div>
+                                <div class="media-step-text">
+                                    <strong>社内の「繰り返し業務」をリストアップする</strong>
+                                    毎日・毎週同じ手順で行っている業務を棚卸しするだけで、AIエージェント化できる候補が見えてきます。まずは「自分の1週間の業務」を書き出してみましょう。
+                                </div>
+                            </div>
+                            <div class="media-step">
+                                <div class="media-step-num">2</div>
+                                <div class="media-step-text">
+                                    <strong>ノーコード自動化ツールに触れる</strong>
+                                    Make（旧Integromat）やZapierの無料プランで、まずは1つの業務自動化を試してみましょう。「Gmailで特定のメールが来たらNotionに追記する」程度なら1時間で構築できます。
+                                </div>
+                            </div>
+                            <div class="media-step">
+                                <div class="media-step-num">3</div>
+                                <div class="media-step-text">
+                                    <strong>AIに任せる業務・人間がやる業務を明確にする</strong>
+                                    AIエージェントは「決まったルールがある業務」は得意ですが、「顧客との関係構築」「創造的な意思決定」は苦手です。どこまでAIに任せるかを経営レベルで議論することが重要です。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>まとめ：2025年はエージェント元年</h2>
+                            <p>AIは「使うもの」から「働くもの」へ変化しています。この変化に早期対応した企業とそうでない企業の差は、3〜5年後に劇的に開くと予測されます。</p>
+                            <p>Rivetでは、エージェント型AIの実装支援も承っています。「自社でどこから始めるべきか」だけでも気軽にご相談ください。</p>
+                        </div>
+
+                        <a href="index.html#media" class="media-back">← Media 一覧に戻る</a>
+                    </div>
+
+                    <aside class="media-sidebar">
+                        <div class="media-sidebar-card">
+                            <h4>Author</h4>
+                            <div class="media-author">
+                                <div class="media-author-avatar">R</div>
+                                <div>
+                                    <div class="media-author-name">Rivet編集部</div>
+                                    <div class="media-author-role">AI活用・Web制作の実践情報を発信</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-sidebar-card">
+                            <h4>Tags</h4>
+                            <div class="media-tags-list">
+                                <span>AIトレンド</span>
+                                <span>エージェントAI</span>
+                                <span>OpenAI</span>
+                                <span>自動化</span>
+                                <span>n8n</span>
+                                <span>ビジネス戦略</span>
+                            </div>
+                        </div>
+                        <div class="media-cta-card">
+                            <p>エージェント型AIを<br>自社に導入しませんか？</p>
+                            <a href="contact.html" class="media-cta-btn">無料相談する →</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物流業界向け在庫最適化AI | Case Study | Rivet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+<body class="loading">
+    <canvas id="hero-canvas"></canvas>
+    <canvas id="network-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-text">Rivet</div>
+            <div class="loader-bar-bg"><div class="loader-bar"></div></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Rivet"></a></div>
+        <nav class="desktop-nav">
+            <a href="index.html#service" class="nav-link"><span>Service</span></a>
+            <a href="index.html#work" class="nav-link"><span>Work</span></a>
+            <a href="index.html#media" class="nav-link"><span>Media</span></a>
+            <a href="about.html" class="nav-link"><span>About Us</span></a>
+            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="contact.html" class="nav-link"><span>Contact</span></a>
+        </nav>
+        <div class="menu-toggle"><div class="hamburger"><span></span><span></span></div></div>
+    </header>
+
+    <main>
+        <section class="case-hero">
+            <div class="container">
+                <nav class="case-breadcrumb">
+                    <a href="index.html">HOME</a><span>/</span>
+                    <a href="index.html#work">CASE STUDY</a><span>/</span>
+                    物流業界向け在庫最適化AI
+                </nav>
+                <span class="case-hero-cat">AI Analysis</span>
+                <h1>需要予測AIの導入で廃棄ロス20%削減、<br>利益率を大幅改善</h1>
+                <p class="case-hero-client"><strong>○○ロジスティクス株式会社 様</strong> &nbsp;|&nbsp; 2024年8月</p>
+            </div>
+        </section>
+
+        <section class="case-body">
+            <div class="container">
+                <div class="case-layout">
+                    <div class="case-main">
+                        <div class="case-main-image">
+                            <div class="case-main-image-placeholder"
+                                style="background: linear-gradient(135deg, #10b981 0%, #059669 50%, #064e3b 100%); background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80'); background-size: cover; background-position: center;"></div>
+                        </div>
+
+                        <div class="case-tabs">
+                            <button class="case-tab active" onclick="switchTab(this,'before-3')">導入前の課題</button>
+                            <button class="case-tab" onclick="switchTab(this,'after-3')">導入後の効果</button>
+                        </div>
+
+                        <div class="case-tab-panel case-tab-panel--before active" id="before-3">
+                            <ul class="case-issue-list">
+                                <li>
+                                    <span class="case-issue-icon">📦</span>
+                                    需要予測が担当者の「経験と勘」に依存しており、予測精度が低く大量の過剰在庫・廃棄ロスが毎月発生していた。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">📊</span>
+                                    販売データ・季節データ・外部トレンドデータが各システムに分散しており、統合的な分析ができない状況だった。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">⏰</span>
+                                    月次の在庫調整作業に担当者が3〜4日を費やしており、他の業務を圧迫していた。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">💸</span>
+                                    廃棄コストと機会損失（品切れによる売上逸失）の両方が発生しており、利益率の改善が経営課題になっていた。
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="case-tab-panel case-tab-panel--after" id="after-3">
+                            <div class="case-effect-grid">
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">20%</div>
+                                    <div class="case-effect-label">廃棄ロス削減</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">85%</div>
+                                    <div class="case-effect-label">需要予測精度<br>（従来比+35pt）</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">4日→2h</div>
+                                    <div class="case-effect-label">在庫調整作業<br>時間削減</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">+8%</div>
+                                    <div class="case-effect-label">粗利率改善</div>
+                                </div>
+                            </div>
+                            <ul class="case-effect-list">
+                                <li>✅ 3年分の販売データ・気象データ・イベントカレンダーを統合したデータパイプラインを構築。AIが自動で需要予測を生成。</li>
+                                <li>✅ PythonベースのML予測モデルとダッシュボードをAzure上に構築。担当者がノーコードで予測結果を確認・調整可能に。</li>
+                                <li>✅ 品切れによる機会損失も可視化。補充タイミングの最適化により在庫回転率が向上。</li>
+                                <li>✅ 月次在庫調整がほぼ自動化され、担当者は高付加価値な戦略業務にシフト。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <aside class="case-sidebar">
+                        <div class="case-company-card">
+                            <h4>Company Info</h4>
+                            <table class="case-company-table">
+                                <tr><th>企業名</th><td>○○ロジスティクス株式会社</td></tr>
+                                <tr><th>業種</th><td>物流・倉庫</td></tr>
+                                <tr><th>従業員数</th><td>50〜100名</td></tr>
+                                <tr><th>所在地</th><td>大阪府</td></tr>
+                                <tr><th>導入時期</th><td>2024年8月</td></tr>
+                            </table>
+                            <div class="case-company-tags">
+                                <span>AI Analysis</span>
+                                <span>Python</span>
+                                <span>予測AI</span>
+                                <span>物流</span>
+                            </div>
+                        </div>
+                        <div class="case-cta-card">
+                            <p>データ活用・AI分析の<br>ご相談はこちらから</p>
+                            <a href="contact.html" class="case-cta-btn">無料相談する →</a>
+                        </div>
+                    </aside>
+                </div>
+                <a href="index.html#work" class="case-back">← Case Study 一覧に戻る</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+    function switchTab(btn, panelId) {
+        btn.closest('.case-main').querySelectorAll('.case-tab').forEach(t => t.classList.remove('active'));
+        btn.closest('.case-main').querySelectorAll('.case-tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(panelId).classList.add('active');
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大手製造業向け生成AI導入プロジェクト | Case Study | Rivet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+<body class="loading">
+    <canvas id="hero-canvas"></canvas>
+    <canvas id="network-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-text">Rivet</div>
+            <div class="loader-bar-bg"><div class="loader-bar"></div></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo">
+            <a href="index.html"><img src="images/logo.png" alt="Rivet"></a>
+        </div>
+        <nav class="desktop-nav">
+            <a href="index.html#service" class="nav-link"><span>Service</span></a>
+            <a href="index.html#work" class="nav-link"><span>Work</span></a>
+            <a href="index.html#media" class="nav-link"><span>Media</span></a>
+            <a href="about.html" class="nav-link"><span>About Us</span></a>
+            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="contact.html" class="nav-link"><span>Contact</span></a>
+        </nav>
+        <div class="menu-toggle"><div class="hamburger"><span></span><span></span></div></div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="case-hero">
+            <div class="container">
+                <nav class="case-breadcrumb">
+                    <a href="index.html">HOME</a>
+                    <span>/</span>
+                    <a href="index.html#work">CASE STUDY</a>
+                    <span>/</span>
+                    大手製造業向け生成AI導入
+                </nav>
+                <span class="case-hero-cat">AI Solution</span>
+                <h1>社内ナレッジを活かしたRAG構築で<br>問い合わせ工数を60%削減</h1>
+                <p class="case-hero-client"><strong>株式会社○○製造 様</strong> &nbsp;|&nbsp; 2024年12月</p>
+            </div>
+        </section>
+
+        <!-- Body -->
+        <section class="case-body">
+            <div class="container">
+                <div class="case-layout">
+                    <!-- Main -->
+                    <div class="case-main">
+                        <div class="case-main-image">
+                            <div class="case-main-image-placeholder"
+                                style="background: linear-gradient(135deg, #0f172a 0%, #064e3b 50%, #065f46 100%); background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80'); background-size: cover; background-position: center;"></div>
+                        </div>
+
+                        <div class="case-tabs">
+                            <button class="case-tab active" onclick="switchTab(this,'before-1')">導入前の課題</button>
+                            <button class="case-tab" onclick="switchTab(this,'after-1')">導入後の効果</button>
+                        </div>
+
+                        <!-- 導入前の課題 -->
+                        <div class="case-tab-panel case-tab-panel--before active" id="before-1">
+                            <ul class="case-issue-list">
+                                <li>
+                                    <span class="case-issue-icon">📁</span>
+                                    社内に散在する技術ドキュメント・マニュアルが数千件あり、必要な情報を探すのに平均30分以上かかっていた。部門をまたぐ情報共有がほぼ機能していない状態だった。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">🧠</span>
+                                    ベテラン社員の暗黙知がデジタル化されておらず、退職・異動のたびに貴重なノウハウが失われるリスクが常に存在していた。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">📞</span>
+                                    問い合わせ担当者が1日50件以上の同じ質問に対応しており、本来注力すべき設計・開発業務に充てる時間が大幅に削られていた。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">🔒</span>
+                                    クラウドAIサービスへの社外データ送信をセキュリティポリシーで禁止しており、市販のChatGPT等がそのままでは使えない状況だった。
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- 導入後の効果 -->
+                        <div class="case-tab-panel case-tab-panel--after" id="after-1">
+                            <div class="case-effect-grid">
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">60%</div>
+                                    <div class="case-effect-label">問い合わせ対応<br>工数削減</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">90%</div>
+                                    <div class="case-effect-label">情報検索時間<br>短縮</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">3分</div>
+                                    <div class="case-effect-label">平均回答時間<br>（導入前 30分）</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">100%</div>
+                                    <div class="case-effect-label">社内オンプレで<br>セキュア運用</div>
+                                </div>
+                            </div>
+                            <ul class="case-effect-list">
+                                <li>✅ Azure OpenAI Service × 社内ベクターDBによるRAGシステムを構築。機密データを社外に出さずにGPT-4を活用可能に。</li>
+                                <li>✅ 数千件のマニュアル・図面・議事録をベクトル化し、自然言語で即座に関連情報を検索・回答できる環境を整備。</li>
+                                <li>✅ ベテラン社員へのインタビューを通じて暗黙知を構造化・データ化し、組織全体の共有知識として蓄積。</li>
+                                <li>✅ 担当者が本来業務（設計・開発）に集中できるようになり、製品開発スピードが向上。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="case-sidebar">
+                        <div class="case-company-card">
+                            <h4>Company Info</h4>
+                            <table class="case-company-table">
+                                <tr><th>企業名</th><td>株式会社○○製造</td></tr>
+                                <tr><th>業種</th><td>製造業</td></tr>
+                                <tr><th>従業員数</th><td>300〜500名</td></tr>
+                                <tr><th>所在地</th><td>愛知県</td></tr>
+                                <tr><th>導入時期</th><td>2024年12月</td></tr>
+                            </table>
+                            <div class="case-company-tags">
+                                <span>AI Solution</span>
+                                <span>RAG</span>
+                                <span>Azure OpenAI</span>
+                                <span>製造業</span>
+                            </div>
+                        </div>
+                        <div class="case-cta-card">
+                            <p>同じ課題でお悩みですか？<br>まずは無料相談からご連絡ください。</p>
+                            <a href="contact.html" class="case-cta-btn">無料相談する →</a>
+                        </div>
+                    </aside>
+                </div>
+
+                <a href="index.html#work" class="case-back">← Case Study 一覧に戻る</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+    function switchTab(btn, panelId) {
+        btn.closest('.case-main').querySelectorAll('.case-tab').forEach(t => t.classList.remove('active'));
+        btn.closest('.case-main').querySelectorAll('.case-tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(panelId).classList.add('active');
+    }
+    </script>
+</body>
+</html>

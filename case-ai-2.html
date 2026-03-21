@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全社AIリテラシー向上研修 | Case Study | Rivet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+<body class="loading">
+    <canvas id="hero-canvas"></canvas>
+    <canvas id="network-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-text">Rivet</div>
+            <div class="loader-bar-bg"><div class="loader-bar"></div></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Rivet"></a></div>
+        <nav class="desktop-nav">
+            <a href="index.html#service" class="nav-link"><span>Service</span></a>
+            <a href="index.html#work" class="nav-link"><span>Work</span></a>
+            <a href="index.html#media" class="nav-link"><span>Media</span></a>
+            <a href="about.html" class="nav-link"><span>About Us</span></a>
+            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="contact.html" class="nav-link"><span>Contact</span></a>
+        </nav>
+        <div class="menu-toggle"><div class="hamburger"><span></span><span></span></div></div>
+    </header>
+
+    <main>
+        <section class="case-hero">
+            <div class="container">
+                <nav class="case-breadcrumb">
+                    <a href="index.html">HOME</a><span>/</span>
+                    <a href="index.html#work">CASE STUDY</a><span>/</span>
+                    全社AIリテラシー向上研修
+                </nav>
+                <span class="case-hero-cat">AI Training</span>
+                <h1>非エンジニア社員も含む全社員が<br>AIを日常業務で使いこなせる組織へ</h1>
+                <p class="case-hero-client"><strong>株式会社○○グループ 様</strong> &nbsp;|&nbsp; 2024年10月</p>
+            </div>
+        </section>
+
+        <section class="case-body">
+            <div class="container">
+                <div class="case-layout">
+                    <div class="case-main">
+                        <div class="case-main-image">
+                            <div class="case-main-image-placeholder"
+                                style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #92400e 100%); background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80'); background-size: cover; background-position: center;"></div>
+                        </div>
+
+                        <div class="case-tabs">
+                            <button class="case-tab active" onclick="switchTab(this,'before-2')">導入前の課題</button>
+                            <button class="case-tab" onclick="switchTab(this,'after-2')">導入後の効果</button>
+                        </div>
+
+                        <div class="case-tab-panel case-tab-panel--before active" id="before-2">
+                            <ul class="case-issue-list">
+                                <li>
+                                    <span class="case-issue-icon">😰</span>
+                                    「AIを使うと仕事が奪われる」という誤解や不安が社内に広まっており、AI活用への心理的抵抗が強かった。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">🔀</span>
+                                    一部のIT部門だけがAIを活用しており、営業・人事・バックオフィスなど現場部門には全く浸透していなかった。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">❓</span>
+                                    「AIって何から始めればいいの？」という声が多く、具体的な業務への活用イメージが持てていなかった。
+                                </li>
+                                <li>
+                                    <span class="case-issue-icon">📉</span>
+                                    競合他社がAI活用で生産性を上げる中、自社の対応の遅れが経営課題として認識されつつあった。
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="case-tab-panel case-tab-panel--after" id="after-2">
+                            <div class="case-effect-grid">
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">92%</div>
+                                    <div class="case-effect-label">研修満足度<br>（受講者アンケート）</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">20%</div>
+                                    <div class="case-effect-label">業務効率化<br>（3ヶ月後調査）</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">全部門</div>
+                                    <div class="case-effect-label">AI活用<br>浸透達成</div>
+                                </div>
+                                <div class="case-effect-card">
+                                    <div class="case-effect-num">150+</div>
+                                    <div class="case-effect-label">業務改善アイデア<br>創出件数</div>
+                                </div>
+                            </div>
+                            <ul class="case-effect-list">
+                                <li>✅ 全6部門・約200名を対象に、部門ごとの業務に特化したカスタマイズ研修を実施。現場で即使えるプロンプト集を提供。</li>
+                                <li>✅ ワークショップ形式で「自分の業務でAIを使うと何が変わるか」を体験。導入後のモチベーションが大幅に向上。</li>
+                                <li>✅ 社内AI活用推進チームを組成し、継続的な学習・共有の仕組みを構築。Rivetが3ヶ月間のアフターフォローを実施。</li>
+                                <li>✅ 営業部門ではAIを使った提案書作成時間が70%短縮。人事部門では採用文書の作成工数も削減。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <aside class="case-sidebar">
+                        <div class="case-company-card">
+                            <h4>Company Info</h4>
+                            <table class="case-company-table">
+                                <tr><th>企業名</th><td>株式会社○○グループ</td></tr>
+                                <tr><th>業種</th><td>総合商社</td></tr>
+                                <tr><th>従業員数</th><td>100〜300名</td></tr>
+                                <tr><th>所在地</th><td>東京都</td></tr>
+                                <tr><th>導入時期</th><td>2024年10月</td></tr>
+                            </table>
+                            <div class="case-company-tags">
+                                <span>AI Training</span>
+                                <span>Workshop</span>
+                                <span>Prompt Eng.</span>
+                                <span>組織変革</span>
+                            </div>
+                        </div>
+                        <div class="case-cta-card">
+                            <p>自社でも同様の研修を<br>導入してみませんか？</p>
+                            <a href="contact.html" class="case-cta-btn">無料相談する →</a>
+                        </div>
+                    </aside>
+                </div>
+                <a href="index.html#work" class="case-back">← Case Study 一覧に戻る</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+    function switchTab(btn, panelId) {
+        btn.closest('.case-main').querySelectorAll('.case-tab').forEach(t => t.classList.remove('active'));
+        btn.closest('.case-main').querySelectorAll('.case-tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(panelId).classList.add('active');
+    }
+    </script>
+</body>
+</html>

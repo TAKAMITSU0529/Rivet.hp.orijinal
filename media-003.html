@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>議事録作成も時間を半分にした！ | Media | Rivet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+<body class="loading">
+    <canvas id="hero-canvas"></canvas>
+    <canvas id="network-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-text">Rivet</div>
+            <div class="loader-bar-bg"><div class="loader-bar"></div></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Rivet"></a></div>
+        <nav class="desktop-nav">
+            <a href="index.html#service" class="nav-link"><span>Service</span></a>
+            <a href="index.html#work" class="nav-link"><span>Work</span></a>
+            <a href="index.html#media" class="nav-link"><span>Media</span></a>
+            <a href="about.html" class="nav-link"><span>About Us</span></a>
+            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="contact.html" class="nav-link"><span>Contact</span></a>
+        </nav>
+        <div class="menu-toggle"><div class="hamburger"><span></span><span></span></div></div>
+    </header>
+
+    <main>
+        <section class="media-hero" style="background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1400&q=80'); background-size: cover; background-position: center;">
+            <div class="media-hero-gradient" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.45) 100%);"></div>
+            <div class="container media-hero-inner">
+                <nav class="media-breadcrumb">
+                    <a href="index.html">HOME</a><span>/</span>
+                    <a href="index.html#media">MEDIA</a><span>/</span>
+                    AI活用30日間トライアル Day06
+                </nav>
+                <span class="media-hero-tag">議事録AI</span>
+                <h1>議事録作成も時間を半分にした！<br>AI活用30日間トライアル Day06</h1>
+                <div class="media-hero-meta">
+                    <span>2025.05.04</span>
+                    <span class="dot">|</span>
+                    <span>読了時間：約5分</span>
+                    <span class="dot">|</span>
+                    <span>Rivet編集部</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="media-body">
+            <div class="container">
+                <div class="media-layout">
+                    <div class="media-content">
+
+                        <p class="media-lead">
+                            会議後の議事録作成は「誰がやるか」問題にもなりがちな地味な重要業務。録音→文字起こし→要約→タスク抽出までをAIで自動化したところ、所要時間が平均45分から20分に短縮されました。
+                        </p>
+
+                        <div class="media-section">
+                            <h2>議事録作成の何がムダなのか</h2>
+                            <p>議事録作成の工程を分解すると、以下のステップがあります。</p>
+                            <ul>
+                                <li>①録音or手書きメモで会議内容を記録する</li>
+                                <li>②会議後に録音を聞き返しながら書き起こす</li>
+                                <li>③要点を整理して読みやすくまとめる</li>
+                                <li>④決定事項・タスク・担当者・期限を抽出する</li>
+                                <li>⑤関係者に共有する</li>
+                            </ul>
+                            <p>このうち②③④がAIで大幅に自動化できます。</p>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>使ったツールの組み合わせ</h2>
+
+                            <div class="media-step">
+                                <div class="media-step-num">1</div>
+                                <div class="media-step-text">
+                                    <strong>Notta（録音→文字起こし）</strong>
+                                    スマホアプリで録音するだけで、AIが自動的に文字起こしを行います。日本語精度が高く、話者の区別（話者分離）にも対応。90分の会議が録音終了後5分で文字起こし完了します。
+                                </div>
+                            </div>
+                            <div class="media-step">
+                                <div class="media-step-num">2</div>
+                                <div class="media-step-text">
+                                    <strong>ChatGPT（要約→議事録化）</strong>
+                                    Nottaの文字起こしテキストをコピーしてChatGPTに貼り付け、専用プロンプトを使って議事録形式に整形。決定事項・ToDoリスト・次回アジェンダも同時抽出。
+                                </div>
+                            </div>
+                            <div class="media-step">
+                                <div class="media-step-num">3</div>
+                                <div class="media-step-text">
+                                    <strong>Notion（議事録の蓄積・共有）</strong>
+                                    整形した議事録をNotionの所定テンプレートに貼り付けて保存。関係者に共有リンクを送るだけで完了。過去の議事録もNotionで検索できます。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>精度を上げる議事録プロンプト</h2>
+                            <p>以下のプロンプトを使うと、精度の高い議事録が生成されます。</p>
+                            <div class="media-highlight">
+                                <p><strong>議事録生成プロンプト：</strong></p>
+                                <p>「以下の会議の文字起こしを元に、下記フォーマットで議事録を作成してください。<br><br>
+                                【日時】【参加者】【会議目的】<br>
+                                【議題と討議内容】（箇条書き）<br>
+                                【決定事項】（番号付きリスト）<br>
+                                【ToDo・担当者・期限】（表形式）<br>
+                                【次回アジェンダ候補】<br><br>
+                                ※専門用語はそのまま使用、敬語は使わずフラットな文体で。<br>
+                                文字起こし：〔ここに貼り付け〕」</p>
+                            </div>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>Zoom・Teamsならより簡単</h2>
+                            <p>ZoomやMicrosoft Teamsを使っているなら、さらに楽になります。</p>
+                            <ul>
+                                <li><strong>Zoom AI Companion：</strong>会議終了後に自動で要約・チャプター・アクションアイテムを生成</li>
+                                <li><strong>Microsoft Copilot（Teams）：</strong>会議中にリアルタイムで議事録を作成し、終了後即共有</li>
+                                <li><strong>tl;dv：</strong>録画+文字起こし+要約+ハイライトクリップを無料プランで利用可能</li>
+                            </ul>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>まとめ：AI議事録で会議文化が変わる</h2>
+                            <p>議事録の自動化で時間が節約できるだけでなく、「誰が議事録を書くか」という心理的な負担もなくなります。全員が発言に集中できる会議文化が生まれます。</p>
+                            <p>まずはNottaの無料プランとChatGPTの無料版から試してみてください。ほぼコストゼロで効果を実感できます。</p>
+                        </div>
+
+                        <a href="index.html#media" class="media-back">← Media 一覧に戻る</a>
+                    </div>
+
+                    <aside class="media-sidebar">
+                        <div class="media-sidebar-card">
+                            <h4>Author</h4>
+                            <div class="media-author">
+                                <div class="media-author-avatar">R</div>
+                                <div>
+                                    <div class="media-author-name">Rivet編集部</div>
+                                    <div class="media-author-role">AI活用・Web制作の実践情報を発信</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-sidebar-card">
+                            <h4>Tags</h4>
+                            <div class="media-tags-list">
+                                <span>議事録AI</span>
+                                <span>Notta</span>
+                                <span>ChatGPT</span>
+                                <span>会議効率化</span>
+                                <span>文字起こし</span>
+                                <span>30日トライアル</span>
+                            </div>
+                        </div>
+                        <div class="media-cta-card">
+                            <p>AI導入の第一歩を<br>一緒に踏み出しませんか？</p>
+                            <a href="contact.html" class="media-cta-btn">無料相談する →</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

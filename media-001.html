@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI×カレンダー連携で予定調整を自動化 | Media | Rivet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+</head>
+<body class="loading">
+    <canvas id="hero-canvas"></canvas>
+    <canvas id="network-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-text">Rivet</div>
+            <div class="loader-bar-bg"><div class="loader-bar"></div></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo"><a href="index.html"><img src="images/logo.png" alt="Rivet"></a></div>
+        <nav class="desktop-nav">
+            <a href="index.html#service" class="nav-link"><span>Service</span></a>
+            <a href="index.html#work" class="nav-link"><span>Work</span></a>
+            <a href="index.html#media" class="nav-link"><span>Media</span></a>
+            <a href="about.html" class="nav-link"><span>About Us</span></a>
+            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
+            <a href="contact.html" class="nav-link"><span>Contact</span></a>
+        </nav>
+        <div class="menu-toggle"><div class="hamburger"><span></span><span></span></div></div>
+    </header>
+
+    <main>
+        <section class="media-hero" style="background-image: url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&w=1400&q=80'); background-size: cover; background-position: center;">
+            <div class="media-hero-gradient" style="background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.45) 100%);"></div>
+            <div class="container media-hero-inner">
+                <nav class="media-breadcrumb">
+                    <a href="index.html">HOME</a><span>/</span>
+                    <a href="index.html#media">MEDIA</a><span>/</span>
+                    AI活用30日間トライアル Day10
+                </nav>
+                <span class="media-hero-tag">AI活用</span>
+                <h1>AI×カレンダー連携で予定調整を自動化<br>| AI活用30日間トライアル Day10</h1>
+                <div class="media-hero-meta">
+                    <span>2025.05.16</span>
+                    <span class="dot">|</span>
+                    <span>読了時間：約5分</span>
+                    <span class="dot">|</span>
+                    <span>Rivet編集部</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="media-body">
+            <div class="container">
+                <div class="media-layout">
+                    <div class="media-content">
+
+                        <p class="media-lead">
+                            「会議の日程調整」は、誰もが経験する地味に時間を奪う業務の代表格です。AIとカレンダーを連携させることで、この調整コストをゼロに近づける方法を実践してみました。
+                        </p>
+
+                        <div class="media-section">
+                            <h2>なぜ予定調整にAIが有効なのか？</h2>
+                            <p>予定調整という業務は、一見シンプルに見えます。しかし実際には「候補日を複数提示する」「相手の空き時間を確認する」「場所や形式を調整する」「リマインダーを送る」という複数のステップが絡み合っています。</p>
+                            <p>特にビジネスの現場では、1件の商談アポイントを取るために平均3〜5回のメールのやり取りが発生するというデータもあります。これを月単位で積み上げると、担当者一人あたり年間で数十時間が「調整業務」に溶けていることになります。</p>
+                            <div class="media-highlight">
+                                <p>📊 <strong>実測データ：</strong>Rivetスタッフの1ヶ月の調整業務時間を計測したところ、平均<strong>月4.5時間</strong>を予定調整に費やしていました。AI導入後は<strong>月45分</strong>まで短縮されました。</p>
+                            </div>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>実際に使ったツールと連携方法</h2>
+                            <p>今回のトライアルでは以下の3つのツールを組み合わせました。</p>
+
+                            <div class="media-step">
+                                <div class="media-step-num">1</div>
+                                <div class="media-step-text">
+                                    <strong>Googleカレンダー + Gemini</strong>
+                                    GeminiとGoogleカレンダーを連携し、「来週の空き時間を確認して」と話しかけるだけで、空きスロットを自動抽出。メール文面の候補日リストに自動挿入。
+                                </div>
+                            </div>
+                            <div class="media-step">
+                                <div class="media-step-num">2</div>
+                                <div class="media-step-text">
+                                    <strong>Calendly（自動スケジューリング）</strong>
+                                    CalendlyのURLを相手に共有するだけで、相手が自分で空き時間を選んで予約できる仕組み。確認メールも自動送信。
+                                </div>
+                            </div>
+                            <div class="media-step">
+                                <div class="media-step-num">3</div>
+                                <div class="media-step-text">
+                                    <strong>ChatGPT（メール文面の自動生成）</strong>
+                                    「○○さんとの初回商談のアポメールを書いて。候補日は△△と□□と××。場所はZoom」とプロンプトを入力するだけで、礼儀正しいアポイントメールが60秒以内に完成。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>実際のプロンプト例</h2>
+                            <p>以下は実際にChatGPTに入力したプロンプトと、その出力の一部です。</p>
+                            <div class="media-highlight">
+                                <p><strong>プロンプト：</strong></p>
+                                <p>「株式会社○○の山田様への初回打ち合わせのアポイントメールを書いてください。<br>
+                                候補日：5月20日（火）15:00〜、5月22日（木）11:00〜、5月23日（金）14:00〜<br>
+                                形式：Zoom（URLは後日お送りします）<br>
+                                目的：当社のAI研修サービスのご説明（30分程度）<br>
+                                トーン：丁寧・ビジネスライク」</p>
+                            </div>
+                            <p>このプロンプト一つで、挨拶・用件・候補日・所要時間・締めの一言まで含んだメールが即座に生成されます。あとは社名・名前を確認して送信するだけ。所要時間は約90秒です。</p>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>よくある失敗とその対策</h2>
+                            <ul>
+                                <li><strong>候補日が少なすぎる：</strong>AIが作るメールに候補日が2つしかないと調整が難航します。プロンプトに「候補日は3〜4つ」と明示しましょう。</li>
+                                <li><strong>敬語が過剰になる：</strong>AIは安全側に倒して敬語を使いすぎる傾向があります。「ビジネスフレンドリー、過剰にへりくだらない」とトーンを指定するとちょうどよくなります。</li>
+                                <li><strong>Calendlyの設定が粗い：</strong>会議の種類ごとに所要時間・バッファタイムを設定しないと、連続で会議が詰まって疲弊します。「前後15分のバッファを設定する」がおすすめです。</li>
+                            </ul>
+                        </div>
+
+                        <div class="media-section">
+                            <h2>まとめ：月4.5時間→45分の削減効果</h2>
+                            <p>AIとカレンダーツールの連携で、予定調整にかかる時間を90%削減できました。「たった4.5時間」と感じるかもしれませんが、これが12ヶ月で54時間、5年で270時間です。</p>
+                            <p>何より、調整の往復メールによるストレスや「また連絡待ちか…」というフラストレーションがなくなることの価値は数字以上です。</p>
+                            <p>次回Day11では、AI×CRM連携で商談後のフォローアップを自動化する方法をご紹介します。</p>
+                        </div>
+
+                        <a href="index.html#media" class="media-back">← Media 一覧に戻る</a>
+                    </div>
+
+                    <aside class="media-sidebar">
+                        <div class="media-sidebar-card">
+                            <h4>Author</h4>
+                            <div class="media-author">
+                                <div class="media-author-avatar">R</div>
+                                <div>
+                                    <div class="media-author-name">Rivet編集部</div>
+                                    <div class="media-author-role">AI活用・Web制作の実践情報を発信</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-sidebar-card">
+                            <h4>Tags</h4>
+                            <div class="media-tags-list">
+                                <span>AI活用</span>
+                                <span>カレンダー</span>
+                                <span>業務効率化</span>
+                                <span>ChatGPT</span>
+                                <span>Calendly</span>
+                                <span>30日トライアル</span>
+                            </div>
+                        </div>
+                        <div class="media-cta-card">
+                            <p>AI活用を自社でも始めませんか？<br>まずは無料相談から。</p>
+                            <a href="contact.html" class="media-cta-btn">無料相談する →</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

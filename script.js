@@ -86,6 +86,201 @@ window.addEventListener('load', () => {
         }, '-=0.8');
 });
 
+/* ============================================================
+   CanvasBg — セクション背景キャンバス 再利用クラス
+   ヒーローと同じ「グラデーション煙 + ネットワーク粒々」を
+   任意のセクションに1行で適用できる
+
+   Usage:
+     new CanvasBg('.strengths')
+     new CanvasBg('.strengths', { orbCount: 6, orbBlur: 60 })
+
+   Options:
+     colors          — オーブの色配列
+     orbCount        — オーブ数 (default: 8)
+     bgColor         — キャンバス背景色 (default: '#ffffff')
+     orbBlur         — CSS blur量px (default: 80)
+     orbOpacity      — オーブcanvas opacity (default: 0.8)
+     netOpacity      — ネットcanvas opacity (default: 0.7)
+     netParticleCount— パーティクル数 (default: 60)
+     netConnectionDist— 接続距離px (default: 130)
+   ============================================================ */
+class CanvasBg {
+    constructor(target, opts = {}) {
+        this.el = typeof target === 'string'
+            ? document.querySelector(target) : target;
+        if (!this.el) return;
+
+        this.opts = Object.assign({
+            colors: [
+                'rgba(16, 185, 129, 0.4)',
+                'rgba(5, 150, 105, 0.35)',
+                'rgba(245, 158, 11, 0.35)',
+                'rgba(251, 191, 36, 0.4)',
+                'rgba(59, 130, 246, 0.2)',
+            ],
+            orbCount: 8,
+            bgColor: '#ffffff',
+            orbBlur: 80,
+            orbOpacity: 0.8,
+            netOpacity: 0.7,
+            netParticleCount: 60,
+            netConnectionDist: 130,
+        }, opts);
+
+        if (getComputedStyle(this.el).position === 'static') {
+            this.el.style.position = 'relative';
+        }
+
+        this._orbCanvas = this._makeCanvas('cbg-orbs', this.opts.orbBlur, this.opts.orbOpacity, 0);
+        this._orbCtx    = this._orbCanvas.getContext('2d');
+        this._netCanvas = this._makeCanvas('cbg-net', 0, this.opts.netOpacity, 1);
+        this._netCtx    = this._netCanvas.getContext('2d');
+
+        this._resize();
+        this._initOrbs();
+        this._initNet();
+        this._animOrbs();
+        this._animNet();
+
+        this._ro = new ResizeObserver(() => {
+            this._resize();
+            this._initOrbs();
+            this._initNet();
+        });
+        this._ro.observe(this.el);
+    }
+
+    _makeCanvas(cls, blur, opacity, zIdx) {
+        const c = document.createElement('canvas');
+        c.className = cls;
+        c.style.cssText = [
+            'position:absolute', 'top:0', 'left:0',
+            'width:100%', 'height:100%',
+            blur ? `filter:blur(${blur}px)` : '',
+            `opacity:${opacity}`,
+            'pointer-events:none',
+            `z-index:${zIdx}`,
+        ].join(';');
+        this.el.insertBefore(c, this.el.firstChild);
+        return c;
+    }
+
+    _resize() {
+        this.w = this.el.offsetWidth;
+        this.h = this.el.offsetHeight;
+        this._orbCanvas.width  = this.w;
+        this._orbCanvas.height = this.h;
+        this._netCanvas.width  = this.w;
+        this._netCanvas.height = this.h;
+    }
+
+    _initOrbs() {
+        const { w, h, opts } = this;
+        this._orbs = Array.from({ length: opts.orbCount }, () => {
+            const base = Math.min(w, h) * (0.4 + Math.random() * 0.3);
+            return {
+                x: Math.random() * w, y: Math.random() * h,
+                _base: base, radius: base,
+                color: opts.colors[Math.floor(Math.random() * opts.colors.length)],
+                angle: Math.random() * Math.PI * 2,
+                velocity: Math.random() * 0.3 + 0.1,
+                angleSpeed: (Math.random() - 0.5) * 0.005,
+                pulseAngle: Math.random() * Math.PI * 2,
+                pulseSpeed: 0.01 + Math.random() * 0.01,
+            };
+        });
+    }
+
+    _initNet() {
+        const { w, h, opts } = this;
+        const count = w < 768
+            ? Math.floor(opts.netParticleCount * 0.45)
+            : opts.netParticleCount;
+        this._netPs = Array.from({ length: count }, () => ({
+            x: Math.random() * w, y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            size: Math.random() * 1.5 + 0.5,
+        }));
+    }
+
+    _animOrbs() {
+        const ctx = this._orbCtx;
+        ctx.fillStyle = this.opts.bgColor;
+        ctx.fillRect(0, 0, this.w, this.h);
+
+        this._orbs.forEach(o => {
+            o.x += Math.cos(o.angle) * o.velocity;
+            o.y += Math.sin(o.angle) * o.velocity;
+            o.angle += o.angleSpeed;
+            o.pulseAngle += o.pulseSpeed;
+            o.radius = o._base + Math.sin(o.pulseAngle) * (o._base * 0.15);
+            const buf = o.radius;
+            if (o.x < -buf) o.x = this.w + buf;
+            if (o.x > this.w + buf) o.x = -buf;
+            if (o.y < -buf) o.y = this.h + buf;
+            if (o.y > this.h + buf) o.y = -buf;
+
+            const g = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.radius);
+            g.addColorStop(0, o.color);
+            g.addColorStop(1, 'rgba(255,255,255,0)');
+            ctx.fillStyle = g;
+            ctx.beginPath();
+            ctx.arc(o.x, o.y, o.radius, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        this._rafOrbs = requestAnimationFrame(() => this._animOrbs());
+    }
+
+    _animNet() {
+        const ctx = this._netCtx;
+        const ps  = this._netPs;
+        const dist = this.opts.netConnectionDist;
+        ctx.clearRect(0, 0, this.w, this.h);
+
+        ps.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0 || p.x > this.w) p.vx *= -1;
+            if (p.y < 0 || p.y > this.h) p.vy *= -1;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(16,185,129,0.6)';
+            ctx.fill();
+        });
+
+        for (let i = 0; i < ps.length; i++) {
+            for (let j = i + 1; j < ps.length; j++) {
+                const dx = ps[i].x - ps[j].x;
+                const dy = ps[i].y - ps[j].y;
+                const d  = Math.sqrt(dx * dx + dy * dy);
+                if (d < dist) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(16,185,129,${(1 - d / dist) * 0.2})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(ps[i].x, ps[i].y);
+                    ctx.lineTo(ps[j].x, ps[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        this._rafNet = requestAnimationFrame(() => this._animNet());
+    }
+
+    destroy() {
+        cancelAnimationFrame(this._rafOrbs);
+        cancelAnimationFrame(this._rafNet);
+        this._ro.disconnect();
+        this._orbCanvas.remove();
+        this._netCanvas.remove();
+    }
+}
+
+// ---- Strengths セクションに適用 ----
+new CanvasBg('.strengths');
+
 // Hero Canvas Animation (Organic Gradient Smoke)
 const canvas = document.getElementById('hero-canvas');
 const ctx = canvas.getContext('2d');
@@ -523,7 +718,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── Strengths Section: scroll reveal ──
+    // ── UseCase Cards: scroll reveal ──
+    const ucCards = document.querySelectorAll('.uc-card');
+    if (ucCards.length) {
+        const ucObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    ucObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        ucCards.forEach(card => ucObserver.observe(card));
+
+        // Mouse glow follow
+        ucCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--mouse-x', `${x}%`);
+                card.style.setProperty('--mouse-y', `${y}%`);
+            });
+        });
+    }
+
+    // ── Strengths Section: scroll reveal + digital glow ──
     const strCards = document.querySelectorAll('.str-card');
     if (strCards.length) {
         const strObserver = new IntersectionObserver((entries) => {
@@ -533,34 +753,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     strObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.12 });
 
-        strCards.forEach(card => strObserver.observe(card));
-    }
+        strCards.forEach(card => {
+            strObserver.observe(card);
 
-    // ── Strengths: number counter animation ──
-    const strNumbers = document.querySelectorAll('.str-number');
-    if (strNumbers.length) {
-        const numObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const target = parseInt(el.textContent, 10);
-                    let current = 0;
-                    const step = Math.ceil(target / 20);
-                    const timer = setInterval(() => {
-                        current += step;
-                        if (current >= target) {
-                            current = target;
-                            clearInterval(timer);
-                        }
-                        el.textContent = String(current).padStart(2, '0');
-                    }, 40);
-                    numObserver.unobserve(el);
-                }
+            // Mouse-position radial glow (CSS custom props)
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                card.style.setProperty('--str-mx', `${x}%`);
+                card.style.setProperty('--str-my', `${y}%`);
             });
-        }, { threshold: 0.5 });
-
-        strNumbers.forEach(el => numObserver.observe(el));
+        });
     }
 });
