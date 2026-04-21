@@ -3970,6 +3970,11 @@ a.blog-card:hover .blog-img-placeholder {
         font-size: 1.35rem;
     }
 
+    .hero-title {
+        font-size: 2.5rem; /* Large enough to fill width without breaking significantly */
+        line-height: 1.05;
+    }
+
     .mission-visual {
         width: 260px !important;
         height: 260px !important;
