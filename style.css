@@ -305,30 +305,54 @@ a {
 }
 
 .hero-label {
-    font-size: 0.9rem;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    margin-bottom: 1.5rem;
+    letter-spacing: 0.35em;
+    margin-bottom: 2rem;
     opacity: 0;
     animation: fadeUp 1s var(--easing) 2.2s forwards;
-    color: var(--text-muted);
+    color: var(--accent-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+}
+
+.hero-label::before,
+.hero-label::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
 }
 
 .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(3.5rem, 10vw, 7.5rem);
-    line-height: 1;
-    margin-bottom: 2rem;
+    font-family: 'Noto Sans JP', var(--font-display), sans-serif;
+    font-size: clamp(2.6rem, 7.5vw, 5.8rem);
+    font-weight: 900;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
     color: var(--text-color);
 }
 
 .hero-title .line {
     overflow: hidden;
+    padding: 0.08em 0;
 }
 
 .hero-title .word {
     display: inline-block;
     transform: translateY(100%);
+}
+
+.hero-title-en {
+    font-family: var(--font-display), 'Outfit', sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    padding-right: 0.05em;
+    letter-spacing: -0.01em;
 }
 
 .hero-title .highlight {
@@ -494,11 +518,14 @@ a {
 }
 
 .hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    font-weight: 400;
     color: var(--text-muted);
-    margin-top: 4rem;
-    /* Added spacing */
-    margin-bottom: 3rem;
+    line-height: 2;
+    letter-spacing: 0.05em;
+    margin: 2.5rem auto 3.5rem;
+    max-width: 620px;
     opacity: 0;
     transform: translateY(20px);
 }
@@ -3938,9 +3965,10 @@ a.blog-card:hover .blog-img-placeholder {
     }
 
     .hero-title {
-        font-size: clamp(2.8rem, 11vw, 4rem);
-        line-height: 1.1;
-        margin-bottom: 2.5rem;
+        font-size: clamp(2.1rem, 8.5vw, 3.2rem);
+        line-height: 1.22;
+        margin-bottom: 2rem;
+        letter-spacing: -0.01em;
     }
 
     .hero-jp-copy {
@@ -3971,8 +3999,9 @@ a.blog-card:hover .blog-img-placeholder {
     }
 
     .hero-title {
-        font-size: 2.5rem; /* Large enough to fill width without breaking significantly */
-        line-height: 1.05;
+        font-size: 1.95rem;
+        line-height: 1.25;
+        letter-spacing: -0.005em;
     }
 
     .mission-visual {
