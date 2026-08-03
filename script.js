@@ -282,8 +282,10 @@ class CanvasBg {
 new CanvasBg('.strengths');
 
 // Hero Canvas Animation (Organic Gradient Smoke)
+// hero-canvas が無いページ(about/contact/service-ai等)でも script.js 全体が
+// 停止しないようnullガードする(以降のmagnetic button/scroll reveal等を守るため)
 const canvas = document.getElementById('hero-canvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 
 let width, height;
 let orbs = [];
@@ -404,14 +406,16 @@ function animateCanvas() {
     requestAnimationFrame(animateCanvas);
 }
 
-window.addEventListener('resize', () => {
+if (canvas) {
+    window.addEventListener('resize', () => {
+        resize();
+        initOrbs();
+    });
+
     resize();
     initOrbs();
-});
-
-resize();
-initOrbs();
-animateCanvas();
+    animateCanvas();
+}
 
 // Scroll Animations
 const splitTypes = document.querySelectorAll('.split-text');
@@ -478,46 +482,36 @@ gsap.utils.toArray('.work-card').forEach((card, i) => {
 });
 
 // Blog Infinite Auto-Scroll
+// .blog-track が無いページ(Media一覧以外の全ページ)では何もしない
 const blogTrack = document.querySelector('.blog-track');
 const blogCards = document.querySelectorAll('.blog-card');
 
-// Clone cards for seamless loop
-blogCards.forEach(card => {
-    const clone = card.cloneNode(true);
-    blogTrack.appendChild(clone);
-});
+if (blogTrack) {
+    // Clone cards for seamless loop
+    blogCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        blogTrack.appendChild(clone);
+    });
 
-// Auto-scroll animation (Flowing to the right: -50% -> 0%)
-// If you want it to flow left, change to: 0% -> -50%
-gsap.fromTo(blogTrack, {
-    xPercent: -50
-}, {
-    xPercent: 0,
-    duration: 20, // Adjust speed here
-    ease: "none",
-    repeat: -1
-});
+    // Auto-scroll animation (Flowing to the right: -50% -> 0%)
+    // If you want it to flow left, change to: 0% -> -50%
+    gsap.fromTo(blogTrack, {
+        xPercent: -50
+    }, {
+        xPercent: 0,
+        duration: 20, // Adjust speed here
+        ease: "none",
+        repeat: -1
+    });
 
-// Pause on hover
-blogTrack.addEventListener('mouseenter', () => {
-    gsap.to(blogTrack, { timeScale: 0, duration: 0.5 });
-});
-blogTrack.addEventListener('mouseleave', () => {
-    gsap.to(blogTrack, { timeScale: 1, duration: 0.5 });
-});
-
-// Recruit Content Animation
-gsap.from('.recruit-content > *', {
-    scrollTrigger: {
-        trigger: '.recruit',
-        start: 'top 70%',
-    },
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.2,
-    ease: 'power3.out'
-});
+    // Pause on hover
+    blogTrack.addEventListener('mouseenter', () => {
+        gsap.to(blogTrack, { timeScale: 0, duration: 0.5 });
+    });
+    blogTrack.addEventListener('mouseleave', () => {
+        gsap.to(blogTrack, { timeScale: 1, duration: 0.5 });
+    });
+}
 
 // About Content Animation
 gsap.from('.about-content > *', {
@@ -585,7 +579,7 @@ gsap.to('.visual-box', {
 
 // Network Animation (Digital Constellation)
 const netCanvas = document.getElementById('network-canvas');
-const netCtx = netCanvas.getContext('2d');
+const netCtx = netCanvas ? netCanvas.getContext('2d') : null;
 
 let netWidth, netHeight;
 let netParticles = [];
@@ -667,9 +661,11 @@ function animateNetwork() {
     requestAnimationFrame(animateNetwork);
 }
 
-window.addEventListener('resize', initNetwork);
-initNetwork();
-animateNetwork();
+if (netCanvas) {
+    window.addEventListener('resize', initNetwork);
+    initNetwork();
+    animateNetwork();
+}
 
 // Work Tabs Logic
 document.addEventListener('DOMContentLoaded', () => {
@@ -766,6 +762,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.setProperty('--str-mx', `${x}%`);
                 card.style.setProperty('--str-my', `${y}%`);
             });
+        });
+    }
+
+    // ── Contact Form: ハニーポット判定 + デモモード送信 ──
+    // 公開時、送信先(action)をフォームサービスに接続したら data-demo 属性を削除する
+    const contactForm = document.querySelector('.js-contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            const hp = contactForm.querySelector('input[name="company_url"]');
+            if (hp && hp.value) {
+                // ハニーポットに入力があれば送信を静かに中断(bot対策)
+                e.preventDefault();
+                return;
+            }
+            const btn = contactForm.querySelector('.submit-btn');
+            if (btn) btn.setAttribute('disabled', 'true');
+
+            if (contactForm.hasAttribute('data-demo')) {
+                e.preventDefault();
+                window.location.href = contactForm.getAttribute('data-thanks') || 'thanks.html';
+            }
         });
     }
 });

@@ -346,7 +346,6 @@
             <a href="index.html#work" class="nav-link"><span>Work</span></a>
             <a href="index.html#media" class="nav-link"><span>Media</span></a>
             <a href="about.html" class="nav-link"><span>About Us</span></a>
-            <a href="index.html#recruit" class="nav-link"><span>Recruit</span></a>
             <a href="contact.html" class="nav-link active"><span>Contact</span></a>
         </nav>
     </header>
@@ -380,12 +379,20 @@
 
         <!-- Right Side -->
         <div class="contact-form-side">
-            <form class="form-card" action="#" method="POST">
+            <!-- 公開時: action を送信先サービス(Netlify Forms等)のURLに差し替え、
+                 data-demo 属性を削除する。data-demo がある間は送信せず
+                 thanks.html へ遷移するだけ(ローカル確認用)。詳細はdocs/README参照 -->
+            <form class="form-card js-contact-form" action="thanks.html" method="POST" data-demo data-thanks="thanks.html">
                 <!-- Tech Corners -->
                 <div class="tech-corner tl"></div>
                 <div class="tech-corner tr"></div>
                 <div class="tech-corner bl"></div>
                 <div class="tech-corner br"></div>
+
+                <!-- ハニーポット: 削除禁止(スパム対策)。視覚外に配置 -->
+                <div style="position:absolute; left:-9999px;" aria-hidden="true">
+                    <label>この欄は入力しないでください<input type="text" name="company_url" tabindex="-1" autocomplete="off"></label>
+                </div>
 
                 <div class="form-group">
                     <label for="name" class="form-label">Name</label>
@@ -451,9 +458,8 @@
                     <a href="index.html#work">Work</a>
                     <a href="index.html#media">Media</a>
                     <a href="about.html">About Us</a>
-                    <a href="index.html#recruit">Recruit</a>
                     <a href="contact.html">Contact</a>
-                    <a href="#">Privacy Policy</a>
+                    <a href="privacy.html">Privacy Policy</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -463,79 +469,7 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // Copy network animation logic
-        const netCanvas = document.getElementById('network-canvas');
-        const netCtx = netCanvas.getContext('2d');
-        let netWidth, netHeight;
-        let netParticles = [];
-        let netParticleCount = 80;
-        let netConnectionDist = 150;
-
-        function initNetwork() {
-            netWidth = netCanvas.width = window.innerWidth;
-            netHeight = netCanvas.height = window.innerHeight;
-            netParticles = [];
-            if (window.innerWidth < 768) {
-                netParticleCount = 30;
-                netConnectionDist = 100;
-            } else {
-                netParticleCount = 80;
-                netConnectionDist = 150;
-            }
-            for (let i = 0; i < netParticleCount; i++) {
-                netParticles.push(new NetParticle());
-            }
-        }
-
-        class NetParticle {
-            constructor() {
-                this.x = Math.random() * netWidth;
-                this.y = Math.random() * netHeight;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 1.5 + 0.5;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > netWidth) this.vx *= -1;
-                if (this.y < 0 || this.y > netHeight) this.vy *= -1;
-            }
-            draw() {
-                netCtx.beginPath();
-                netCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                netCtx.fillStyle = 'rgba(16, 185, 129, 0.6)';
-                netCtx.fill();
-            }
-        }
-
-        function animateNetwork() {
-            netCtx.clearRect(0, 0, netWidth, netHeight);
-            for (let i = 0; i < netParticles.length; i++) {
-                netParticles[i].update();
-                netParticles[i].draw();
-                for (let j = i; j < netParticles.length; j++) {
-                    let dx = netParticles[i].x - netParticles[j].x;
-                    let dy = netParticles[i].y - netParticles[j].y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < netConnectionDist) {
-                        netCtx.beginPath();
-                        let opacity = 1 - (distance / netConnectionDist);
-                        netCtx.strokeStyle = `rgba(16, 185, 129, ${opacity * 0.2})`;
-                        netCtx.lineWidth = 0.5;
-                        netCtx.moveTo(netParticles[i].x, netParticles[i].y);
-                        netCtx.lineTo(netParticles[j].x, netParticles[j].y);
-                        netCtx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animateNetwork);
-        }
-        window.addEventListener('resize', initNetwork);
-        initNetwork();
-        animateNetwork();
-    </script>
+    <!-- ネットワーク背景アニメーションは script.js が #network-canvas を検出して共通で動かす(旧: このページ専用の重複コードは削除) -->
 </body>
 
 </html>
