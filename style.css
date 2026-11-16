@@ -261,7 +261,8 @@ a {
 /* Hero */
 .hero {
     position: relative;
-    height: 100vh;
+    min-height: max(100svh, 48rem);
+    padding: 6.5rem 1.5rem 8rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -304,12 +305,18 @@ a {
     padding: 0 1rem;
 }
 
+.hero > .hero-content {
+    width: 100%;
+    max-width: 64rem;
+    padding: 0;
+}
+
 .hero-label {
     font-family: var(--font-display);
     font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.35em;
-    margin-bottom: 2rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
     opacity: 0;
     animation: fadeUp 1s var(--easing) 2.2s forwards;
     color: var(--accent-primary);
@@ -317,6 +324,11 @@ a {
     align-items: center;
     gap: 0.75rem;
     font-weight: 600;
+}
+
+.hero-label > span {
+    /* Remove the trailing tracking space so both ornaments balance. */
+    margin-inline-end: -0.2em;
 }
 
 .hero-label::before,
@@ -329,21 +341,24 @@ a {
 
 .hero-title {
     font-family: 'Noto Sans JP', var(--font-display), sans-serif;
-    font-size: clamp(2.6rem, 7.5vw, 5.8rem);
+    font-size: clamp(2.6rem, 7.5vw, 5.5rem);
     font-weight: 900;
-    line-height: 1.18;
+    line-height: 1.1;
     letter-spacing: -0.02em;
-    margin-bottom: 2.5rem;
+    margin-bottom: 0;
     color: var(--text-color);
 }
 
 .hero-title .line {
     overflow: hidden;
-    padding: 0.08em 0;
+    padding: 0.04em 0;
 }
 
 .hero-title .word {
     display: inline-block;
+    white-space: nowrap;
+    /* Both lines end in full-width punctuation: center the visible ink. */
+    margin-inline-end: -0.48em;
     transform: translateY(100%);
 }
 
@@ -351,7 +366,7 @@ a {
     font-family: var(--font-display), 'Outfit', sans-serif;
     font-weight: 800;
     font-style: italic;
-    padding-right: 0.05em;
+    padding-right: 0.1em;
     letter-spacing: -0.01em;
 }
 
@@ -522,9 +537,10 @@ a {
     font-size: clamp(0.95rem, 1.4vw, 1.15rem);
     font-weight: 400;
     color: var(--text-muted);
-    line-height: 2;
-    letter-spacing: 0.05em;
-    margin: 2.5rem auto 3.5rem;
+    line-height: 1.9;
+    letter-spacing: 0.025em;
+    padding-inline-start: 0.025em;
+    margin: 1.75rem auto 2.25rem;
     max-width: 620px;
     opacity: 0;
     transform: translateY(20px);
@@ -1969,6 +1985,12 @@ a {
     transition: transform 0.6s var(--easing);
 }
 
+.work-video {
+    display: block;
+    object-fit: cover;
+    background: #0f172a;
+}
+
 .work-card:hover .work-img-placeholder {
     transform: scale(1.05);
 }
@@ -2289,6 +2311,24 @@ a {
     font-size: clamp(2.5rem, 5vw, 4rem);
     margin: 1rem 0 3rem;
     color: var(--text-color);
+}
+
+/* Fit the two editorial lines to this column, not to the viewport. */
+#about .about-content {
+    min-width: 0;
+    container-type: inline-size;
+}
+
+#about .about-title {
+    font-size: clamp(18px, 3vw, 40px);
+    font-size: clamp(18px, 8cqi, 48px);
+    line-height: 1.55;
+    letter-spacing: -0.025em;
+}
+
+#about .about-title > span {
+    display: block;
+    white-space: nowrap;
 }
 
 .about-desc p {
@@ -3979,14 +4019,39 @@ a.blog-card:hover .blog-img-placeholder {
     /* ── Hero Section ── */
     .hero {
         min-height: 100svh;
-        padding-top: 8rem; /* Push content down further for better balance */
+        padding: 7rem 1.25rem 8rem;
     }
 
     .hero-title {
         font-size: clamp(2.1rem, 8.5vw, 3.2rem);
-        line-height: 1.22;
-        margin-bottom: 2rem;
-        letter-spacing: -0.01em;
+        line-height: 1.16;
+        margin-bottom: 0;
+        letter-spacing: -0.02em;
+    }
+
+    .hero-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
+        gap: 0.6rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .hero-label > span {
+        margin-inline-end: -0.18em;
+    }
+
+    .hero-label::before,
+    .hero-label::after {
+        width: 20px;
+        flex-shrink: 0;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(0.78rem, 3.3vw, 0.95rem);
+        line-height: 1.95;
+        letter-spacing: 0.015em;
+        padding-inline-start: 0.015em;
+        margin: 1.5rem auto 1.75rem;
     }
 
     .hero-jp-copy {
@@ -4017,9 +4082,9 @@ a.blog-card:hover .blog-img-placeholder {
     }
 
     .hero-title {
-        font-size: 1.95rem;
-        line-height: 1.25;
-        letter-spacing: -0.005em;
+        font-size: clamp(1.75rem, 8vw, 2.2rem);
+        line-height: 1.16;
+        letter-spacing: -0.02em;
     }
 
     .mission-visual {
@@ -4070,3 +4135,5 @@ a.blog-card:hover .blog-img-placeholder {
         font-size: 0.95rem;
     }
 }
+/* Keep the approved mission statement in three lines at every width. */
+.mission-title > .mission-title-line { display: block; white-space: nowrap; }
