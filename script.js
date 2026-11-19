@@ -1,6 +1,11 @@
 // Use native scrolling and static decorative backgrounds on touch devices.
 const lightweightMotion = window.matchMedia('(max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce)').matches;
 
+if (lightweightMotion) {
+    document.querySelector('.loader')?.remove();
+    document.body.classList.add('loaded');
+}
+
 // Initialize Lenis for smooth scrolling
 const lenis = lightweightMotion ? null : new Lenis({
     duration: 1.2,

@@ -4470,7 +4470,7 @@ a.blog-card:hover .blog-img-placeholder {
 
 @media (max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce) {
     .loader { display: none; }
-    main, .hero-subtitle, .hero-cta { opacity: 1; }
+    main, .hero-subtitle, .hero-cta, .hero-label, .scroll-indicator { opacity: 1; }
     .hero-title .word { transform: none; }
     *, *::before, *::after { animation: none !important; }
     .blog-track { transform: none !important; overflow-x: auto; }
