@@ -4543,28 +4543,27 @@ body.page-home .intro { overflow-x: clip; }
   body.page-home .mission-title > .mission-title-line { display: inline; }
   body.page-home .mission-title .sp-br { display: inline; }
   body.page-home .mission-text { font-size: 14px; line-height: 1.85; }
-  body.page-home .mission-visual { width: 200px !important; height: 200px !important; margin: 24px auto 0; }
 
   /* 5. Solutions カード */
   body.page-home .service-category-title { flex-direction: column; align-items: flex-start; gap: 6px; padding-bottom: 12px; margin-bottom: 24px; }
   body.page-home .service-category-title .en { font-size: 26px; line-height: 1.1; white-space: nowrap; }
   body.page-home .service-category-title .ja { font-size: 12px; line-height: 1.4; letter-spacing: .08em; white-space: nowrap; }
-  body.page-home .service-grid { gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  body.page-home .service-grid { gap: 16px; grid-template-columns: minmax(0, 1fr); }
   body.page-home .work-grid { grid-template-columns: minmax(0, 1fr); }
-  body.page-home .service-card { padding: 20px; }
-  body.page-home .service-card .card-number { position: absolute; top: -2px; right: 0; font-size: 30px; line-height: 1; margin: 0; }
-  body.page-home .service-card h3 { font-size: 19px; line-height: 1.45; margin: 0 0 8px; padding-right: 44px; }
-  body.page-home .ai-service-kicker { font-size: 13px; line-height: 1.5; letter-spacing: .04em; margin-bottom: 2px; }
-  body.page-home .ai-service-name { font-size: 19px; line-height: 1.45; }
-  body.page-home .service-card p { font-size: 14.5px; line-height: 1.75; margin-bottom: 14px; }
-  body.page-home .card-tags span { font-size: 12px; padding: 3px 10px; }
+  /* 第2版：番号を左上の顔に／余白を戻す／タグはスマホで出さない（画像・図は本番の大きさのまま） */
+  body.page-home .service-card { padding: 28px 24px 30px; }
+  body.page-home .service-card .card-number { position: static; font-size: 52px; line-height: 1; margin: 0 0 16px; }
+  body.page-home .service-card h3 { font-size: 18px; line-height: 1.5; margin: 0 0 14px; padding-right: 0; }
+  body.page-home .ai-services .ai-service-heading { margin-bottom: 14px; }
+  body.page-home .ai-service-kicker { font-size: 15px; font-weight: 700; line-height: 1.5; letter-spacing: .04em; margin-bottom: 6px; }
+  body.page-home .ai-service-name { font-size: 18px; line-height: 1.5; }
+  body.page-home .service-card p { font-size: 14px; line-height: 1.9; margin-bottom: 0; }
+  body.page-home .service-card .card-tags { display: none; }
 
   /* 6. USE CASE */
   body.page-home .usecase-header { margin-bottom: 36px; }
   body.page-home .usecase-main-title { font-size: 24px; line-height: 1.45; margin: 12px 0 18px; }
   body.page-home .usecase-lead { font-size: 14.5px; line-height: 1.8; text-align: left !important; }
-  body.page-home .usecase-header-visual,
-  body.page-home .usecase-image-wrapper { width: 180px; height: 180px; margin-inline: auto; }
   body.page-home .usecase-services .service-section { padding-block: 8px; }
   body.page-home .usecase-services .service-section > .wrap { padding: 22px 18px 24px; border-radius: 20px; }
   body.page-home .usecase-services .service-heading { padding-bottom: 14px; margin-bottom: 18px; }
@@ -4583,15 +4582,12 @@ body.page-home .intro { overflow-x: clip; }
   body.page-home .usecase-services .estimate-visual { padding: 16px 14px; }
   body.page-home .usecase-services .agent-visual { padding: 16px 12px; }
   body.page-home .usecase-services .agent-message p { font-size: 13.5px; line-height: 1.6; }
-  body.page-home .usecase-services .learning-image { max-width: 200px; margin-inline: auto; }
   body.page-home .usecase-services .scope-note { font-size: 12px; line-height: 1.7; margin-top: 18px; padding-top: 14px; }
 
   /* 7. 強み */
   body.page-home .strengths-header { margin-bottom: 28px; }
-  body.page-home .strengths-mascot-img { max-height: 96px; width: auto; }
   body.page-home .strengths-main-title { font-size: 22px; white-space: nowrap; }
   body.page-home .strengths-lead { font-size: 13.5px; line-height: 1.75; }
-  body.page-home .strengths-grid { gap: 12px; }
   body.page-home .str-card-inner { padding: 18px 16px; }
   body.page-home .str-card h3 { font-size: 15px; line-height: 1.45; }
   body.page-home .str-card p { font-size: 13.5px; line-height: 1.75; }
