@@ -4488,3 +4488,118 @@ a.blog-card:hover .blog-img-placeholder {
 .lightweight-mode .hero-cta,
 .lightweight-mode .hero-label,
 .lightweight-mode .scroll-indicator { opacity: 1; transform: none; }
+
+/* ===== Home: mobile polish (2026-11-19) — index.html only ===== */
+.sp-br { display: none; }
+
+/* PC含む全幅：MISSIONの透かし文字による横はみ出しだけを切る（見た目は不変） */
+body.page-home .intro { overflow-x: clip; }
+
+@media (max-width: 768px) {
+  body.page-home .nw { white-space: nowrap; }
+
+  /* 1. 横ずれ */
+  html:has(> body.page-home) { overflow-x: clip; scroll-padding-top: 64px; }
+  body.page-home { overflow-x: clip; }
+  body.page-home .intro { overflow-x: clip; }
+  body.page-home .mission-watermark { font-size: 4.5rem; left: 50%; top: -1.5rem; transform: translateX(-50%); width: auto; }
+  body.page-home .mission-shape-1 { width: 240px; height: 240px; top: -6%; right: -60px; }
+  body.page-home .mission-shape-2 { width: 180px; height: 180px; left: -50px; bottom: 8%; }
+
+  /* 2. 固定ヘッダー */
+  body.page-home .header {
+    padding: 12px 20px;
+    background: rgba(250, 252, 250, .82);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid rgba(23, 44, 35, .06);
+  }
+  body.page-home .header .logo img { height: 28px; }
+
+  /* 3. 節の余白 */
+  body.page-home .intro { padding: 64px 0 48px; }
+  body.page-home .service,
+  body.page-home .usecase,
+  body.page-home .strengths,
+  body.page-home .about { padding-top: 64px; padding-bottom: 64px; }
+  body.page-home .work,
+  body.page-home .blog { padding-top: 72px; padding-bottom: 72px; }
+  body.page-home .contact { padding-top: 64px; padding-bottom: 64px; }
+  body.page-home .section-header { margin-bottom: 28px; }
+  body.page-home .section-title { font-size: 34px; line-height: 1.1; }
+
+  /* 既定の折り返し */
+  body.page-home main p,
+  body.page-home main li { text-wrap: pretty; }
+  body.page-home main h2,
+  body.page-home main h3,
+  body.page-home .service-category { text-wrap: balance; }
+
+  /* 4. CONCEPT / MISSION */
+  body.page-home .intro-text { font-size: 24px; line-height: 1.45; }
+  body.page-home .intro-sub { font-size: 14.5px; line-height: 1.8; text-align: left; margin-top: 18px; }
+  body.page-home .mission-container { margin-top: 56px; }
+  body.page-home .mission-title { font-size: clamp(22px, 6.6vw, 28px); line-height: 1.45; margin-bottom: 16px; }
+  body.page-home .mission-title > .mission-title-line { display: inline; }
+  body.page-home .mission-title .sp-br { display: inline; }
+  body.page-home .mission-text { font-size: 14px; line-height: 1.85; }
+  body.page-home .mission-visual { width: 200px !important; height: 200px !important; margin: 24px auto 0; }
+
+  /* 5. Solutions カード */
+  body.page-home .service-category-title { flex-direction: column; align-items: flex-start; gap: 6px; padding-bottom: 12px; margin-bottom: 24px; }
+  body.page-home .service-category-title .en { font-size: 26px; line-height: 1.1; white-space: nowrap; }
+  body.page-home .service-category-title .ja { font-size: 12px; line-height: 1.4; letter-spacing: .08em; white-space: nowrap; }
+  body.page-home .service-grid { gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  body.page-home .work-grid { grid-template-columns: minmax(0, 1fr); }
+  body.page-home .service-card { padding: 20px; }
+  body.page-home .service-card .card-number { position: absolute; top: -2px; right: 0; font-size: 30px; line-height: 1; margin: 0; }
+  body.page-home .service-card h3 { font-size: 19px; line-height: 1.45; margin: 0 0 8px; padding-right: 44px; }
+  body.page-home .ai-service-kicker { font-size: 13px; line-height: 1.5; letter-spacing: .04em; margin-bottom: 2px; }
+  body.page-home .ai-service-name { font-size: 19px; line-height: 1.45; }
+  body.page-home .service-card p { font-size: 14.5px; line-height: 1.75; margin-bottom: 14px; }
+  body.page-home .card-tags span { font-size: 12px; padding: 3px 10px; }
+
+  /* 6. USE CASE */
+  body.page-home .usecase-header { margin-bottom: 36px; }
+  body.page-home .usecase-main-title { font-size: 24px; line-height: 1.45; margin: 12px 0 18px; }
+  body.page-home .usecase-lead { font-size: 14.5px; line-height: 1.8; text-align: left !important; }
+  body.page-home .usecase-header-visual,
+  body.page-home .usecase-image-wrapper { width: 180px; height: 180px; margin-inline: auto; }
+  body.page-home .usecase-services .service-section { padding-block: 8px; }
+  body.page-home .usecase-services .service-section > .wrap { padding: 22px 18px 24px; border-radius: 20px; }
+  body.page-home .usecase-services .service-heading { padding-bottom: 14px; margin-bottom: 18px; }
+  body.page-home .usecase-services .service-number { font-size: 34px; line-height: 1; }
+  body.page-home .usecase-services .ai-service-kicker,
+  body.page-home .usecase-services .eyebrow { font-size: 11px; }
+  body.page-home .usecase-services .service-category { font-size: 18px; line-height: 1.4; margin-top: 2px; }
+  body.page-home .usecase-services .usecase-service-grid { gap: 24px; }
+  body.page-home .usecase-services .service-copy h2 { font-size: 22px; line-height: 1.5; }
+  body.page-home .usecase-services .service-copy > p { font-size: 14.5px; line-height: 1.8; margin-top: 14px; }
+  body.page-home .usecase-services .use-list { margin-top: 12px; }
+  body.page-home .usecase-services .use-list li { font-size: 14px; line-height: 1.65; margin: 6px 0; padding-left: 20px; }
+  body.page-home .usecase-services .deliverables { margin-top: 16px; }
+  body.page-home .usecase-services .deliverables p { font-size: 13px; line-height: 1.7; }
+  body.page-home .usecase-services .text-link { margin-top: 16px; }
+  body.page-home .usecase-services .estimate-visual { padding: 16px 14px; }
+  body.page-home .usecase-services .agent-visual { padding: 16px 12px; }
+  body.page-home .usecase-services .agent-message p { font-size: 13.5px; line-height: 1.6; }
+  body.page-home .usecase-services .learning-image { max-width: 200px; margin-inline: auto; }
+  body.page-home .usecase-services .scope-note { font-size: 12px; line-height: 1.7; margin-top: 18px; padding-top: 14px; }
+
+  /* 7. 強み */
+  body.page-home .strengths-header { margin-bottom: 28px; }
+  body.page-home .strengths-mascot-img { max-height: 96px; width: auto; }
+  body.page-home .strengths-main-title { font-size: 22px; white-space: nowrap; }
+  body.page-home .strengths-lead { font-size: 13.5px; line-height: 1.75; }
+  body.page-home .strengths-grid { gap: 12px; }
+  body.page-home .str-card-inner { padding: 18px 16px; }
+  body.page-home .str-card h3 { font-size: 15px; line-height: 1.45; }
+  body.page-home .str-card p { font-size: 13.5px; line-height: 1.75; }
+
+  /* 8. 事例・about・contact */
+  body.page-home .work-title { font-size: 18px; line-height: 1.45; margin-bottom: 8px; }
+  body.page-home .work-desc { font-size: 13.5px; line-height: 1.7; margin-bottom: 16px; }
+  body.page-home .about p { font-size: 14.5px; line-height: 1.8; margin-bottom: 16px; }
+  body.page-home .contact-title { font-size: 34px; line-height: 1.15; margin-bottom: 20px; }
+  body.page-home .contact p { font-size: 15px; line-height: 1.8; margin-bottom: 32px; }
+}
