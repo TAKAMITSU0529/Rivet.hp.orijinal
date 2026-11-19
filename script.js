@@ -301,8 +301,8 @@ let width, height;
 let orbs = [];
 
 function resize() {
-    width = window.innerWidth;
-    height = window.innerHeight;
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
     const scale = compactBackground.matches ? 0.4 : 1;
     canvas.width = Math.max(1, Math.round(width * scale));
     canvas.height = Math.max(1, Math.round(height * scale));
@@ -589,8 +589,8 @@ let netParticleCount = 80; // Default
 let netConnectionDist = 150; // Default
 
 function initNetwork() {
-    netWidth = netCanvas.width = window.innerWidth;
-    netHeight = netCanvas.height = window.innerHeight;
+    netWidth = netCanvas.width = netCanvas.clientWidth;
+    netHeight = netCanvas.height = netCanvas.clientHeight;
     netParticles = [];
 
     // Adjust for mobile
