@@ -4454,9 +4454,15 @@ a.blog-card:hover .blog-img-placeholder {
 .usecase-services .learning-cycle small { font-size:12px; }
 .usecase-services .service-section > .wrap { width: 100%; }
 
-/* Static backgrounds avoid continuous canvas rasterization on touch devices. */
-@media (max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce) {
+/* The compact smoke layer is rasterized at 40% resolution. */
+@media (max-width: 900px), (pointer: coarse) {
+    #hero-canvas { filter: blur(24px); }
+}
+@media (prefers-reduced-motion: reduce) {
     #hero-canvas, #network-canvas { display: none; }
+}
+
+@media (max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce) {
     body {
         background: radial-gradient(ellipse at 5% 10%, #e0f5ed 0%, transparent 50%),
                     radial-gradient(ellipse at 95% 70%, #fbf5df 0%, transparent 50%), #fff;
