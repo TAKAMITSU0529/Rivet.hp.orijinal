@@ -1,5 +1,13 @@
+// Use native scrolling and static decorative backgrounds on touch devices.
+const lightweightMotion = window.matchMedia('(max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce)').matches;
+
+if (lightweightMotion) {
+    document.querySelector('.loader')?.remove();
+    document.body.classList.add('loaded', 'lightweight-mode');
+}
+
 // Initialize Lenis for smooth scrolling
-const lenis = new Lenis({
+const lenis = lightweightMotion ? null : new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     direction: 'vertical',
@@ -15,7 +23,7 @@ function raf(time) {
     requestAnimationFrame(raf);
 }
 
-requestAnimationFrame(raf);
+if (lenis) requestAnimationFrame(raf);
 
 // GSAP Setup
 gsap.registerPlugin(ScrollTrigger);
@@ -52,6 +60,7 @@ interactiveElements.forEach(el => {
 
 // Loading Animation
 window.addEventListener('load', () => {
+    if (lightweightMotion) return;
     const tl = gsap.timeline();
 
     tl.to('.loader-bar', {
@@ -279,7 +288,7 @@ class CanvasBg {
 }
 
 // ---- Strengths セクションに適用 ----
-new CanvasBg('.strengths');
+if (!lightweightMotion) new CanvasBg('.strengths');
 
 // Hero Canvas Animation (Organic Gradient Smoke)
 // hero-canvas が無いページ(about/contact/service-ai等)でも script.js 全体が
@@ -406,7 +415,7 @@ function animateCanvas() {
     requestAnimationFrame(animateCanvas);
 }
 
-if (canvas) {
+if (canvas && !lightweightMotion) {
     window.addEventListener('resize', () => {
         resize();
         initOrbs();
@@ -486,7 +495,7 @@ gsap.utils.toArray('.work-card').forEach((card, i) => {
 const blogTrack = document.querySelector('.blog-track');
 const blogCards = document.querySelectorAll('.blog-card');
 
-if (blogTrack) {
+if (blogTrack && !lightweightMotion) {
     // Clone cards for seamless loop
     blogCards.forEach(card => {
         const clone = card.cloneNode(true);
@@ -661,7 +670,7 @@ function animateNetwork() {
     requestAnimationFrame(animateNetwork);
 }
 
-if (netCanvas) {
+if (netCanvas && !lightweightMotion) {
     window.addEventListener('resize', initNetwork);
     initNetwork();
     animateNetwork();
