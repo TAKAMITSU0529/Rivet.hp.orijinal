@@ -3,7 +3,7 @@ const lightweightMotion = window.matchMedia('(max-width: 900px), (pointer: coars
 
 if (lightweightMotion) {
     document.querySelector('.loader')?.remove();
-    document.body.classList.add('loaded');
+    document.body.classList.add('loaded', 'lightweight-mode');
 }
 
 // Initialize Lenis for smooth scrolling

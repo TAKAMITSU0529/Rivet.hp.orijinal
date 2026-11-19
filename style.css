@@ -4475,3 +4475,10 @@ a.blog-card:hover .blog-img-placeholder {
     *, *::before, *::after { animation: none !important; }
     .blog-track { transform: none !important; overflow-x: auto; }
 }
+
+/* Keep the initial lightweight hero visible after rotation or resizing. */
+.lightweight-mode .hero-title .word,
+.lightweight-mode .hero-subtitle,
+.lightweight-mode .hero-cta,
+.lightweight-mode .hero-label,
+.lightweight-mode .scroll-indicator { opacity: 1; transform: none; }
