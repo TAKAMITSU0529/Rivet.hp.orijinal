@@ -288,7 +288,8 @@ class CanvasBg {
 }
 
 // ---- Strengths セクションに適用 ----
-if (!lightweightMotion) new CanvasBg('.strengths');
+const compactBackground = window.matchMedia('(max-width: 900px), (pointer: coarse)');
+const reducedBackgroundMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 // Hero Canvas Animation (Organic Gradient Smoke)
 // hero-canvas が無いページ(about/contact/service-ai等)でも script.js 全体が
@@ -300,8 +301,12 @@ let width, height;
 let orbs = [];
 
 function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    const scale = compactBackground.matches ? 0.4 : 1;
+    canvas.width = Math.max(1, Math.round(width * scale));
+    canvas.height = Math.max(1, Math.round(height * scale));
+    ctx.setTransform(canvas.width / width, 0, 0, canvas.height / height, 0, 0);
 }
 
 class Orb {
@@ -338,11 +343,11 @@ class Orb {
         this.pulseSpeed = 0.01 + Math.random() * 0.01;
     }
 
-    update() {
+    update(step) {
         // Slow drift
-        this.x += Math.cos(this.angle) * this.velocity;
-        this.y += Math.sin(this.angle) * this.velocity;
-        this.angle += this.angleSpeed;
+        this.x += Math.cos(this.angle) * this.velocity * step;
+        this.y += Math.sin(this.angle) * this.velocity * step;
+        this.angle += this.angleSpeed * step;
 
         // Repel from center (Text area protection)
         const centerX = width / 2;
@@ -360,12 +365,12 @@ class Orb {
             // The closer to center, the stronger the push
             const pushForce = (safeRadius - distance) * 0.02;
 
-            this.x += Math.cos(angleToOrb) * pushForce;
-            this.y += Math.sin(angleToOrb) * pushForce;
+            this.x += Math.cos(angleToOrb) * pushForce * step;
+            this.y += Math.sin(angleToOrb) * pushForce * step;
         }
 
         // Pulse/Breathe (Fluctuate size)
-        this.pulseAngle += this.pulseSpeed;
+        this.pulseAngle += this.pulseSpeed * step;
         this.radius = this.baseRadius + Math.sin(this.pulseAngle) * (this.baseRadius * 0.15);
 
         // Wrap around screen smoothly but respect the center repulsion
@@ -393,13 +398,13 @@ class Orb {
 function initOrbs() {
     orbs = [];
     // Fewer orbs but larger to prevent muddying
-    const orbCount = 8;
+    const orbCount = compactBackground.matches ? 5 : 8;
     for (let i = 0; i < orbCount; i++) {
         orbs.push(new Orb());
     }
 }
 
-function animateCanvas() {
+function animateCanvas(step) {
     // Clear with white
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, width, height);
@@ -408,22 +413,10 @@ function animateCanvas() {
     ctx.globalCompositeOperation = 'source-over';
 
     orbs.forEach(orb => {
-        orb.update();
+        orb.update(step);
         orb.draw();
     });
 
-    requestAnimationFrame(animateCanvas);
-}
-
-if (canvas && !lightweightMotion) {
-    window.addEventListener('resize', () => {
-        resize();
-        initOrbs();
-    });
-
-    resize();
-    initOrbs();
-    animateCanvas();
 }
 
 // Scroll Animations
@@ -601,8 +594,8 @@ function initNetwork() {
     netParticles = [];
 
     // Adjust for mobile
-    if (window.innerWidth < 768) {
-        netParticleCount = 30; // Fewer particles on mobile
+    if (compactBackground.matches) {
+        netParticleCount = 24; // Fewer particles on mobile
         netConnectionDist = 100; // Shorter connection distance
     } else {
         netParticleCount = 80;
@@ -623,9 +616,9 @@ class NetParticle {
         this.size = Math.random() * 1.5 + 0.5; // Small dots
     }
 
-    update() {
-        this.x += this.vx;
-        this.y += this.vy;
+    update(step) {
+        this.x += this.vx * step;
+        this.y += this.vy * step;
 
         // Bounce off edges
         if (this.x < 0 || this.x > netWidth) this.vx *= -1;
@@ -640,15 +633,15 @@ class NetParticle {
     }
 }
 
-function animateNetwork() {
+function animateNetwork(step) {
     netCtx.clearRect(0, 0, netWidth, netHeight);
 
     for (let i = 0; i < netParticles.length; i++) {
-        netParticles[i].update();
+        netParticles[i].update(step);
         netParticles[i].draw();
 
         // Connect particles
-        for (let j = i; j < netParticles.length; j++) {
+        for (let j = i + 1; j < netParticles.length; j++) {
             let dx = netParticles[i].x - netParticles[j].x;
             let dy = netParticles[i].y - netParticles[j].y;
             let distance = Math.sqrt(dx * dx + dy * dy);
@@ -667,13 +660,60 @@ function animateNetwork() {
         }
     }
 
-    requestAnimationFrame(animateNetwork);
 }
 
-if (netCanvas && !lightweightMotion) {
-    window.addEventListener('resize', initNetwork);
-    initNetwork();
-    animateNetwork();
+// Both fixed backgrounds share a frame clock. Movement uses elapsed time in
+// 60 Hz steps so limiting mobile paint frequency keeps the same drift speed.
+if (ctx || netCtx) {
+    const strengths = document.querySelector('.strengths');
+    let strengthsBackground = null;
+    let frame = 0;
+    let lastSmoke = null;
+    let lastNetwork = null;
+
+    function draw(time) {
+        const compact = compactBackground.matches;
+        const smokeElapsed = lastSmoke === null ? 0 : time - lastSmoke;
+        const netElapsed = lastNetwork === null ? 0 : time - lastNetwork;
+        if (ctx && (lastSmoke === null || !compact || smokeElapsed >= 1000 / 15 - 0.1)) {
+            animateCanvas(Math.min(smokeElapsed, 100) * 0.06);
+            lastSmoke = time;
+        }
+        if (netCtx && (lastNetwork === null || !compact || netElapsed >= 1000 / 30 - 0.1)) {
+            animateNetwork(Math.min(netElapsed, 100) * 0.06);
+            lastNetwork = time;
+        }
+        frame = requestAnimationFrame(draw);
+    }
+
+    function syncBackground() {
+        cancelAnimationFrame(frame);
+        lastSmoke = null;
+        lastNetwork = null;
+        const active = !document.hidden && !reducedBackgroundMotion.matches;
+        if ((!active || compactBackground.matches) && strengthsBackground) {
+            strengthsBackground.destroy();
+            strengthsBackground = null;
+        }
+        if (!active) return;
+        if (ctx && (width !== window.innerWidth || height !== window.innerHeight ||
+            canvas.width !== Math.round(window.innerWidth * (compactBackground.matches ? 0.4 : 1)))) {
+            resize();
+            initOrbs();
+        }
+        if (netCtx && (netWidth !== window.innerWidth || netHeight !== window.innerHeight ||
+            netParticles.length !== (compactBackground.matches ? 24 : 80))) initNetwork();
+        if (strengths && !compactBackground.matches && !strengthsBackground) {
+            strengthsBackground = new CanvasBg(strengths);
+        }
+        frame = requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', syncBackground);
+    document.addEventListener('visibilitychange', syncBackground);
+    reducedBackgroundMotion.addEventListener('change', syncBackground);
+    compactBackground.addEventListener('change', syncBackground);
+    syncBackground();
 }
 
 // Work Tabs Logic
